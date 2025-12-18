@@ -6,7 +6,7 @@
     <title>Kati Check - Philippine Allergen & Nutrition Checker</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* (All CSS styles remain exactly the same - no changes needed to the CSS) */
+        /* (All CSS styles remain exactly the same) */
         * {
             margin: 0;
             padding: 0;
@@ -30,7 +30,7 @@
             --warning: #f39c12;
             --danger: #e74c3c;
             
-            /* Nutrition Colors */
+            /* Nutrition Colors - KEEPING FOR FILTERS */
             --nutrition-calories: #3498db;
             --nutrition-protein: #9b59b6;
             --nutrition-carbs: #2ecc71;
@@ -432,7 +432,7 @@
             flex: 1;
         }
 
-        /* Nutrition Filters */
+        /* Nutrition Filters - KEEPING THESE */
         .nutrition-filters {
             background: white;
             border-radius: 15px;
@@ -727,135 +727,6 @@
             background: rgba(243, 156, 18, 0.1);
             color: var(--warning);
             border: 2px solid rgba(243, 156, 18, 0.2);
-        }
-
-        /* Nutrition Information */
-        .nutrition-section {
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 2px solid var(--light-gray);
-        }
-
-        .nutrition-title {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid var(--nutrition-calories);
-        }
-
-        .nutrition-title i {
-            color: var(--nutrition-calories);
-            font-size: 1.6rem;
-        }
-
-        .nutrition-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
-        }
-
-        .nutrition-item {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            text-align: center;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nutrition-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-        }
-
-        .nutrition-item.calories::before { background: var(--nutrition-calories); }
-        .nutrition-item.protein::before { background: var(--nutrition-protein); }
-        .nutrition-item.carbs::before { background: var(--nutrition-carbs); }
-        .nutrition-item.fat::before { background: var(--nutrition-fat); }
-        .nutrition-item.fiber::before { background: var(--nutrition-fiber); }
-        .nutrition-item.sodium::before { background: var(--nutrition-sodium); }
-        .nutrition-item.sugar::before { background: var(--nutrition-sugar); }
-
-        .nutrition-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .nutrition-value {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: baseline;
-            justify-content: center;
-            gap: 2px;
-        }
-
-        .nutrition-item.calories .nutrition-value { color: var(--nutrition-calories); }
-        .nutrition-item.protein .nutrition-value { color: var(--nutrition-protein); }
-        .nutrition-item.carbs .nutrition-value { color: var(--nutrition-carbs); }
-        .nutrition-item.fat .nutrition-value { color: var(--nutrition-fat); }
-        .nutrition-item.fiber .nutrition-value { color: var(--nutrition-fiber); }
-        .nutrition-item.sodium .nutrition-value { color: var(--nutrition-sodium); }
-        .nutrition-item.sugar .nutrition-value { color: var(--nutrition-sugar); }
-
-        .nutrition-unit {
-            font-size: 1rem;
-            font-weight: 600;
-            opacity: 0.8;
-        }
-
-        .nutrition-label {
-            font-size: 0.9rem;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            margin-top: 5px;
-        }
-
-        .nutrition-explanation {
-            margin-top: 25px;
-            padding: 25px;
-            background: linear-gradient(135deg, #f8f9fa, #ffffff);
-            border-radius: 12px;
-            border-left: 4px solid var(--nutrition-calories);
-        }
-
-        .nutrition-explanation h4 {
-            color: var(--dark);
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
-        .nutrition-explanation p {
-            color: var(--gray);
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .daily-value {
-            font-size: 0.9rem;
-            color: var(--gray);
-            font-style: italic;
-            text-align: center;
-            padding: 20px;
-            background: var(--light);
-            border-radius: 10px;
-            margin-top: 25px;
-            border-left: 4px solid var(--nutrition-calories);
         }
 
         /* Forms */
@@ -1577,7 +1448,7 @@
                     </div>
                     <div class="logo-text">
                         <h1>Kati Check</h1>
-                        <span class="tagline">Philippine Allergen & Nutrition Checker</span>
+                        <span class="tagline">Philippine Allergen Checker</span>
                     </div>
                 </a>
                 <button class="company-login-btn" id="companyLoginBtn">
@@ -1592,8 +1463,8 @@
         <!-- User Interface (Default View) -->
         <div id="userInterface">
             <div class="card">
-                <h2 class="section-title">Check for Allergens & Nutrition</h2>
-                <p style="color: var(--gray); margin-bottom: 25px; font-size: 1.1rem;">Select your allergens and search restaurant menus across the Philippines with detailed nutritional information</p>
+                <h2 class="section-title">Check for Allergens</h2>
+                <p style="color: var(--gray); margin-bottom: 25px; font-size: 1.1rem;">Select your allergens and search restaurant menus across the Philippines</p>
 
                 <!-- Allergen Selection -->
                 <div class="allergen-selection-section">
@@ -1623,68 +1494,6 @@
                             <i class="fas fa-times-circle"></i> Clear All
                         </button>
                     </div>
-                </div>
-
-                <!-- Nutrition Filters -->
-                <div class="nutrition-filters" style="margin-top: 40px;">
-                    <h3 class="section-subtitle" style="font-size: 1.3rem; color: var(--dark); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-apple-alt" style="color: var(--primary);"></i> Nutritional Filters
-                    </h3>
-                    <p style="color: var(--gray); margin-bottom: 25px;">Filter by nutritional values (all filters start at 0)</p>
-                    
-                    <div class="filter-grid">
-                        <!-- Calories -->
-                        <div class="filter-group">
-                            <label class="filter-label">
-                                <i class="fas fa-fire"></i> Max Calories
-                            </label>
-                            <input type="range" class="filter-range" id="calorieRange" min="0" max="2000" step="50" value="0">
-                            <div class="range-values">
-                                <span>0 kcal</span>
-                                <span id="calorieValue">0 kcal</span>
-                            </div>
-                        </div>
-
-                        <!-- Protein -->
-                        <div class="filter-group">
-                            <label class="filter-label">
-                                <i class="fas fa-dumbbell"></i> Min Protein
-                            </label>
-                            <input type="range" class="filter-range" id="proteinRange" min="0" max="100" step="5" value="0">
-                            <div class="range-values">
-                                <span>0g</span>
-                                <span id="proteinValue">0g</span>
-                            </div>
-                        </div>
-
-                        <!-- Carbs -->
-                        <div class="filter-group">
-                            <label class="filter-label">
-                                <i class="fas fa-bread-slice"></i> Max Carbs
-                            </label>
-                            <input type="range" class="filter-range" id="carbRange" min="0" max="200" step="10" value="0">
-                            <div class="range-values">
-                                <span>0g</span>
-                                <span id="carbValue">0g</span>
-                            </div>
-                        </div>
-
-                        <!-- Sugar -->
-                        <div class="filter-group">
-                            <label class="filter-label">
-                                <i class="fas fa-candy-cane"></i> Max Sugar
-                            </label>
-                            <input type="range" class="filter-range" id="sugarRange" min="0" max="100" step="5" value="0">
-                            <div class="range-values">
-                                <span>0g</span>
-                                <span id="sugarValue">0g</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="auth-button" id="resetNutritionFilters" style="margin-top: 25px;">
-                        <i class="fas fa-redo"></i> Reset All Filters
-                    </button>
                 </div>
 
                 <!-- Search Button -->
@@ -1819,10 +1628,10 @@
                         </div>
                         <div class="footer-brand-text">
                             <h3>Kati Check</h3>
-                            <p>Philippine Allergen & Nutrition Checker</p>
+                            <p>Philippine Allergen Checker</p>
                         </div>
                     </div>
-                    <p style="color: #bbb; font-size: 1rem; line-height: 1.7;">Helping Filipinos with food allergies and dietary needs dine safely across the Philippines with comprehensive nutritional information.</p>
+                    <p style="color: #bbb; font-size: 1rem; line-height: 1.7;">Helping Filipinos with food allergies dine safely across the Philippines.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -2122,8 +1931,7 @@
             { id: 25, name: "Soybean", icon: "fas fa-seedling", color: "var(--allergen-soy)" }
         ];
 
-        // REAL PHILIPPINE RESTAURANT DATA WITH ALLERGEN & NUTRITION INFO
-        // Restaurants with publicly available allergen information
+        // REAL PHILIPPINE RESTAURANT DATA WITH ALLERGEN INFO
         const initialRestaurants = [
             {
                 id: 1,
@@ -2133,10 +1941,8 @@
                 description: "Chinese-Filipino fast food chain offering dimsum, noodles, and rice meals",
                 gps: "14.5995, 120.9842",
                 hasAllergenInfo: true,
-                hasNutritionInfo: true,
                 companyId: 1,
-                allergensAvailable: true,
-                nutritionAvailable: true
+                allergensAvailable: true
             },
             {
                 id: 2,
@@ -2146,10 +1952,8 @@
                 description: "Philippines' largest fast food chain serving Filipino-style fried chicken, burgers, and spaghetti",
                 gps: "14.6042, 120.9822",
                 hasAllergenInfo: true,
-                hasNutritionInfo: true,
                 companyId: 2,
-                allergensAvailable: true,
-                nutritionAvailable: true
+                allergensAvailable: true
             },
             {
                 id: 3,
@@ -2159,10 +1963,8 @@
                 description: "Organic restaurant with allergen-marked menu and gluten-free options",
                 gps: "14.5547, 121.0244",
                 hasAllergenInfo: true,
-                hasNutritionInfo: false,
                 companyId: 3,
-                allergensAvailable: true,
-                nutritionAvailable: false
+                allergensAvailable: true
             },
             {
                 id: 4,
@@ -2172,10 +1974,8 @@
                 description: "Vegetarian restaurant with allergen-marked menu including Filipino dishes",
                 gps: "14.5578, 121.0164",
                 hasAllergenInfo: true,
-                hasNutritionInfo: false,
                 companyId: 4,
-                allergensAvailable: true,
-                nutritionAvailable: false
+                allergensAvailable: true
             },
             {
                 id: 5,
@@ -2185,10 +1985,8 @@
                 description: "Filipino restaurant that is completely nut and seed-free",
                 gps: "38.9215, -77.0423",
                 hasAllergenInfo: true,
-                hasNutritionInfo: false,
                 companyId: 5,
-                allergensAvailable: true,
-                nutritionAvailable: false
+                allergensAvailable: true
             },
             {
                 id: 6,
@@ -2198,10 +1996,8 @@
                 description: "Restaurant on mountain top with chef knowledgeable about food allergies",
                 gps: "10.3157, 123.8854",
                 hasAllergenInfo: true,
-                hasNutritionInfo: false,
                 companyId: 6,
-                allergensAvailable: true,
-                nutritionAvailable: false
+                allergensAvailable: true
             },
             {
                 id: 7,
@@ -2211,10 +2007,8 @@
                 description: "Grilled chicken fast food chain, generally safe for gluten-free diets",
                 gps: "14.6091, 121.0223",
                 hasAllergenInfo: false,
-                hasNutritionInfo: false,
                 companyId: 7,
-                allergensAvailable: false,
-                nutritionAvailable: false
+                allergensAvailable: false
             },
             {
                 id: 8,
@@ -2224,15 +2018,12 @@
                 description: "Specializes in grilled chicken with vinegar-oil marinade (gluten-free)",
                 gps: "14.5542, 121.0241",
                 hasAllergenInfo: false,
-                hasNutritionInfo: false,
                 companyId: 8,
-                allergensAvailable: false,
-                nutritionAvailable: false
+                allergensAvailable: false
             }
         ];
 
-        // REAL MENU ITEMS WITH ALLERGEN & NUTRITION DATA
-        // Based on Chowking's actual allergen declaration [citation:2] and typical nutrition values
+        // REAL MENU ITEMS WITH ALLERGEN DATA ONLY (NO NUTRITION)
         const initialMenuItems = [
             // Chowking Menu Items
             {
@@ -2242,17 +2033,7 @@
                 description: "Steamed pork dumplings served with soy sauce",
                 price: 85.00,
                 category: "Dimsum",
-                allergens: [1, 5, 8, 9, 14], // Gluten, Egg, Soy, Milk, Sulfites
-                nutrition: {
-                    calories: 220,
-                    protein: 12,
-                    carbs: 18,
-                    sugar: 2,
-                    fat: 10,
-                    saturatedFat: 3,
-                    fiber: 1,
-                    sodium: 580
-                }
+                allergens: [1, 5, 8, 9, 14] // Gluten, Egg, Soy, Milk, Sulfites
             },
             {
                 id: 2,
@@ -2261,17 +2042,7 @@
                 description: "Chinese-style fried rice with beef and vegetables",
                 price: 145.00,
                 category: "Main Course",
-                allergens: [1, 5, 8, 11], // Gluten, Egg, Soy, Celery
-                nutrition: {
-                    calories: 420,
-                    protein: 18,
-                    carbs: 65,
-                    sugar: 4,
-                    fat: 12,
-                    saturatedFat: 4,
-                    fiber: 3,
-                    sodium: 920
-                }
+                allergens: [1, 5, 8, 11] // Gluten, Egg, Soy, Celery
             },
             {
                 id: 3,
@@ -2280,17 +2051,7 @@
                 description: "Traditional Filipino shaved ice dessert with fruits, beans, and leche flan",
                 price: 125.00,
                 category: "Dessert",
-                allergens: [1, 5, 9, 13], // Gluten, Egg, Milk, Sesame
-                nutrition: {
-                    calories: 380,
-                    protein: 8,
-                    carbs: 75,
-                    sugar: 45,
-                    fat: 6,
-                    saturatedFat: 3,
-                    fiber: 2,
-                    sodium: 180
-                }
+                allergens: [1, 5, 9, 13] // Gluten, Egg, Milk, Sesame
             },
             {
                 id: 4,
@@ -2299,17 +2060,7 @@
                 description: "Crispy pork in sweet and sour sauce with vegetables",
                 price: 165.00,
                 category: "Main Course",
-                allergens: [1, 8, 14], // Gluten, Soy, Sulfites
-                nutrition: {
-                    calories: 480,
-                    protein: 22,
-                    carbs: 55,
-                    sugar: 25,
-                    fat: 18,
-                    saturatedFat: 6,
-                    fiber: 2,
-                    sodium: 1100
-                }
+                allergens: [1, 8, 14] // Gluten, Soy, Sulfites
             },
             {
                 id: 5,
@@ -2318,19 +2069,9 @@
                 description: "Stir-fried noodles with vegetables and meat",
                 price: 135.00,
                 category: "Noodles",
-                allergens: [1, 5, 8, 11], // Gluten, Egg, Soy, Celery
-                nutrition: {
-                    calories: 390,
-                    protein: 15,
-                    carbs: 68,
-                    sugar: 8,
-                    fat: 9,
-                    saturatedFat: 3,
-                    fiber: 4,
-                    sodium: 980
-                }
+                allergens: [1, 5, 8, 11] // Gluten, Egg, Soy, Celery
             },
-            // Jollibee Menu Items (based on US allergen information [citation:5])
+            // Jollibee Menu Items
             {
                 id: 6,
                 restaurantId: 2,
@@ -2338,17 +2079,7 @@
                 description: "Classic Filipino-style crispy fried chicken",
                 price: 99.00,
                 category: "Main Course",
-                allergens: [1, 5, 9], // Gluten, Egg, Milk
-                nutrition: {
-                    calories: 320,
-                    protein: 28,
-                    carbs: 15,
-                    sugar: 0,
-                    fat: 18,
-                    saturatedFat: 5,
-                    fiber: 1,
-                    sodium: 750
-                }
+                allergens: [1, 5, 9] // Gluten, Egg, Milk
             },
             {
                 id: 7,
@@ -2357,17 +2088,7 @@
                 description: "Sweet-style spaghetti with hotdog and cheese",
                 price: 85.00,
                 category: "Main Course",
-                allergens: [1, 5, 9], // Gluten, Egg, Milk
-                nutrition: {
-                    calories: 380,
-                    protein: 12,
-                    carbs: 62,
-                    sugar: 22,
-                    fat: 10,
-                    saturatedFat: 4,
-                    fiber: 3,
-                    sodium: 650
-                }
+                allergens: [1, 5, 9] // Gluten, Egg, Milk
             },
             {
                 id: 8,
@@ -2376,17 +2097,7 @@
                 description: "Fried pie with peach and mango filling",
                 price: 45.00,
                 category: "Dessert",
-                allergens: [1], // Gluten only
-                nutrition: {
-                    calories: 180,
-                    protein: 2,
-                    carbs: 28,
-                    sugar: 12,
-                    fat: 7,
-                    saturatedFat: 2,
-                    fiber: 1,
-                    sodium: 220
-                }
+                allergens: [1] // Gluten only
             },
             {
                 id: 9,
@@ -2395,17 +2106,7 @@
                 description: "Beef patty with mushroom gravy and rice",
                 price: 75.00,
                 category: "Main Course",
-                allergens: [1, 5, 8, 9], // Gluten, Egg, Soy, Milk
-                nutrition: {
-                    calories: 420,
-                    protein: 20,
-                    carbs: 55,
-                    sugar: 8,
-                    fat: 14,
-                    saturatedFat: 5,
-                    fiber: 2,
-                    sodium: 890
-                }
+                allergens: [1, 5, 8, 9] // Gluten, Egg, Soy, Milk
             },
             // The Wholesome Table (gluten-free options)
             {
@@ -2415,17 +2116,7 @@
                 description: "Rice noodles stir-fried with vegetables and choice of protein",
                 price: 395.00,
                 category: "Main Course",
-                allergens: [8], // Soy only (from sauce)
-                nutrition: {
-                    calories: 320,
-                    protein: 18,
-                    carbs: 45,
-                    sugar: 6,
-                    fat: 9,
-                    saturatedFat: 2,
-                    fiber: 5,
-                    sodium: 620
-                }
+                allergens: [8] // Soy only (from sauce)
             },
             {
                 id: 11,
@@ -2434,17 +2125,7 @@
                 description: "Traditional Filipino chicken stew made gluten-free",
                 price: 425.00,
                 category: "Main Course",
-                allergens: [8], // Soy only (from coconut aminos)
-                nutrition: {
-                    calories: 280,
-                    protein: 32,
-                    carbs: 8,
-                    sugar: 3,
-                    fat: 12,
-                    saturatedFat: 3,
-                    fiber: 2,
-                    sodium: 580
-                }
+                allergens: [8] // Soy only (from coconut aminos)
             },
             // Purple Patch (nut-free restaurant)
             {
@@ -2454,17 +2135,7 @@
                 description: "Traditional Filipino oxtail stew made without peanuts",
                 price: 550.00,
                 category: "Main Course",
-                allergens: [1, 2, 5, 8, 9], // Gluten, Shrimp, Egg, Soy, Milk
-                nutrition: {
-                    calories: 380,
-                    protein: 35,
-                    carbs: 12,
-                    sugar: 4,
-                    fat: 22,
-                    saturatedFat: 8,
-                    fiber: 3,
-                    sodium: 720
-                }
+                allergens: [1, 2, 5, 8, 9] // Gluten, Shrimp, Egg, Soy, Milk
             },
             // Mang Inasal
             {
@@ -2474,17 +2145,7 @@
                 description: "Grilled chicken marinated in vinegar, calamansi, and spices",
                 price: 125.00,
                 category: "Main Course",
-                allergens: [], // Generally gluten-free based on marinade
-                nutrition: {
-                    calories: 240,
-                    protein: 30,
-                    carbs: 2,
-                    sugar: 1,
-                    fat: 12,
-                    saturatedFat: 3,
-                    fiber: 0,
-                    sodium: 420
-                }
+                allergens: [] // Generally gluten-free based on marinade
             },
             // Bacolod Chicken Inasal
             {
@@ -2494,17 +2155,7 @@
                 description: "Special grilled chicken with vinegar-oil marinade",
                 price: 145.00,
                 category: "Main Course",
-                allergens: [], // Gluten-free marinade
-                nutrition: {
-                    calories: 260,
-                    protein: 32,
-                    carbs: 3,
-                    sugar: 2,
-                    fat: 13,
-                    saturatedFat: 4,
-                    fiber: 0,
-                    sodium: 480
-                }
+                allergens: [] // Gluten-free marinade
             }
         ];
 
@@ -2542,12 +2193,6 @@
         let currentCompany = null;
         let selectedAllergens = new Set();
         let selectedRestaurants = new Set();
-        let nutritionFilters = {
-            maxCalories: 0,
-            minProtein: 0,
-            maxCarbs: 0,
-            maxSugar: 0
-        };
 
         // DOM Elements
         const userInterface = document.getElementById('userInterface');
@@ -2583,15 +2228,6 @@
         const nutritionModal = document.getElementById('nutritionModal');
         const toast = document.getElementById('toast');
         const closeModalBtns = document.querySelectorAll('.close-modal');
-        const calorieRange = document.getElementById('calorieRange');
-        const proteinRange = document.getElementById('proteinRange');
-        const carbRange = document.getElementById('carbRange');
-        const sugarRange = document.getElementById('sugarRange');
-        const calorieValue = document.getElementById('calorieValue');
-        const proteinValue = document.getElementById('proteinValue');
-        const carbValue = document.getElementById('carbValue');
-        const sugarValue = document.getElementById('sugarValue');
-        const resetNutritionFilters = document.getElementById('resetNutritionFilters');
         const addRestaurantForm = document.getElementById('addRestaurantForm');
         const editRestaurantForm = document.getElementById('editRestaurantForm');
         const addMenuItemForm = document.getElementById('addMenuItemForm');
@@ -2613,9 +2249,6 @@
 
             // Set up event listeners
             setupEventListeners();
-
-            // Update nutrition filter displays
-            updateNutritionFilterDisplays();
             
             // Show demo restaurant info
             showDemoInfo();
@@ -2623,12 +2256,11 @@
 
         // Show demo information
         function showDemoInfo() {
-            console.log("Kati Check Demo - Philippine Restaurant Allergen & Nutrition Checker");
+            console.log("Kati Check Demo - Philippine Restaurant Allergen Checker");
             console.log("Loaded with real data from:");
-            console.log("- Chowking (actual allergen declaration) [citation:2]");
-            console.log("- Jollibee (nutrition and allergen info) [citation:5]");
-            console.log("- Philippine restaurants with allergen awareness [citation:1][citation:6]");
-            console.log("- Common hidden allergens in Filipino dishes [citation:7]");
+            console.log("- Chowking (actual allergen declaration)");
+            console.log("- Jollibee (allergen info)");
+            console.log("- Philippine restaurants with allergen awareness");
         }
 
         // Load saved data from localStorage
@@ -2869,20 +2501,7 @@
             }
         }
 
-        // Update nutrition filter displays
-        function updateNutritionFilterDisplays() {
-            calorieValue.textContent = `${calorieRange.value} kcal`;
-            proteinValue.textContent = `${proteinRange.value}g`;
-            carbValue.textContent = `${carbRange.value}g`;
-            sugarValue.textContent = `${sugarRange.value}g`;
-            
-            nutritionFilters.maxCalories = parseInt(calorieRange.value);
-            nutritionFilters.minProtein = parseInt(proteinRange.value);
-            nutritionFilters.maxCarbs = parseInt(carbRange.value);
-            nutritionFilters.maxSugar = parseInt(sugarRange.value);
-        }
-
-        // Perform search - FIXED VERSION
+        // Perform search - SIMPLIFIED VERSION (NO NUTRITION FILTERS)
         function performSearch() {
             console.log("=== DEBUG: Starting Search ===");
             console.log("Selected Allergens:", Array.from(selectedAllergens));
@@ -2923,26 +2542,6 @@
                         return false;
                     }
                     
-                    // Filter by nutrition if item has nutrition data
-                    if (item.nutrition) {
-                        if (nutritionFilters.maxCalories > 0 && item.nutrition.calories > nutritionFilters.maxCalories) {
-                            console.log(`❌ ${item.name} excluded: Calories too high`);
-                            return false;
-                        }
-                        if (nutritionFilters.minProtein > 0 && item.nutrition.protein < nutritionFilters.minProtein) {
-                            console.log(`❌ ${item.name} excluded: Protein too low`);
-                            return false;
-                        }
-                        if (nutritionFilters.maxCarbs > 0 && item.nutrition.carbs > nutritionFilters.maxCarbs) {
-                            console.log(`❌ ${item.name} excluded: Carbs too high`);
-                            return false;
-                        }
-                        if (nutritionFilters.maxSugar > 0 && item.nutrition.sugar > nutritionFilters.maxSugar) {
-                            console.log(`❌ ${item.name} excluded: Sugar too high`);
-                            return false;
-                        }
-                    }
-                    
                     console.log(`✅ ${item.name} included: Safe item`);
                     return true; // Item is safe (doesn't contain selected allergens)
                 });
@@ -2952,7 +2551,7 @@
             }, 500);
         }
 
-        // Display search results - FIXED VERSION
+        // Display search results - SIMPLIFIED VERSION (NO NUTRITION DATA)
         function displaySearchResults(items) {
             searchResults.innerHTML = '';
             
@@ -2980,56 +2579,6 @@
 
                 const resultItem = document.createElement('div');
                 resultItem.className = `result-item ${safetyClass}`;
-                
-                let nutritionHTML = '';
-                if (item.nutrition) {
-                    nutritionHTML = `
-                        <div class="nutrition-section">
-                            <div class="nutrition-title">
-                                <i class="fas fa-apple-alt"></i> Nutritional Information (per serving)
-                            </div>
-                            <div class="nutrition-grid">
-                                <div class="nutrition-item calories">
-                                    <div class="nutrition-value">${item.nutrition.calories}<span class="nutrition-unit">kcal</span></div>
-                                    <div class="nutrition-label">Calories</div>
-                                </div>
-                                <div class="nutrition-item protein">
-                                    <div class="nutrition-value">${item.nutrition.protein}<span class="nutrition-unit">g</span></div>
-                                    <div class="nutrition-label">Protein</div>
-                                </div>
-                                <div class="nutrition-item carbs">
-                                    <div class="nutrition-value">${item.nutrition.carbs}<span class="nutrition-unit">g</span></div>
-                                    <div class="nutrition-label">Carbs</div>
-                                </div>
-                                <div class="nutrition-item fat">
-                                    <div class="nutrition-value">${item.nutrition.fat}<span class="nutrition-unit">g</span></div>
-                                    <div class="nutrition-label">Fat</div>
-                                </div>
-                                <div class="nutrition-item sugar">
-                                    <div class="nutrition-value">${item.nutrition.sugar}<span class="nutrition-unit">g</span></div>
-                                    <div class="nutrition-label">Sugar</div>
-                                </div>
-                                <div class="nutrition-item fiber">
-                                    <div class="nutrition-value">${item.nutrition.fiber}<span class="nutrition-unit">g</span></div>
-                                    <div class="nutrition-label">Fiber</div>
-                                </div>
-                                <div class="nutrition-item sodium">
-                                    <div class="nutrition-value">${item.nutrition.sodium}<span class="nutrition-unit">mg</span></div>
-                                    <div class="nutrition-label">Sodium</div>
-                                </div>
-                            </div>
-                            <div class="nutrition-explanation">
-                                <h4>What this means:</h4>
-                                <p>This item provides <strong>${Math.round((item.nutrition.calories/2000)*100)}%</strong> of recommended daily calories (2000 kcal diet). 
-                                Contains <strong>${item.nutrition.protein}g protein</strong> (${Math.round((item.nutrition.protein/50)*100)}% of daily need) and 
-                                <strong>${item.nutrition.fiber}g fiber</strong> (${Math.round((item.nutrition.fiber/28)*100)}% of daily need).</p>
-                            </div>
-                            <div class="daily-value">
-                                *Percent Daily Values are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs.
-                            </div>
-                        </div>
-                    `;
-                }
 
                 resultItem.innerHTML = `
                     <div class="result-header">
@@ -3061,7 +2610,6 @@
                             <span class="allergen-tag safe"><i class="fas fa-check-circle"></i> No allergens detected</span>
                         </div>
                     `}
-                    ${nutritionHTML}
                 `;
 
                 searchResults.appendChild(resultItem);
@@ -3081,9 +2629,6 @@
             document.querySelectorAll('.restaurant-item').forEach(item => {
                 item.classList.remove('selected');
             });
-            
-            // Reset nutrition filters
-            resetNutritionFilters.click();
             
             searchResultsContainer.classList.add('hidden');
             noResults.classList.add('hidden');
@@ -3117,7 +2662,7 @@
             loadCompanyDashboard();
         }
 
-        // Load company dashboard
+        // Load company dashboard - UPDATED (REMOVED NUTRITION STATS)
         function loadCompanyDashboard() {
             if (!currentCompany) return;
 
@@ -3125,13 +2670,6 @@
             const companyMenuItems = menuItems.filter(item => 
                 companyRestaurants.some(r => r.id === item.restaurantId)
             );
-
-            // Calculate nutrition statistics
-            const itemsWithNutrition = companyMenuItems.filter(item => item.nutrition);
-            const avgCalories = itemsWithNutrition.length > 0 ? 
-                Math.round(itemsWithNutrition.reduce((sum, item) => sum + item.nutrition.calories, 0) / itemsWithNutrition.length) : 0;
-            const nutritionCompletePercent = companyMenuItems.length > 0 ? 
-                Math.round((itemsWithNutrition.length / companyMenuItems.length) * 100) : 0;
 
             companyDashboard.innerHTML = `
                 <div class="dashboard-header">
@@ -3163,17 +2701,17 @@
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon">
-                            <i class="fas fa-apple-alt"></i>
+                            <i class="fas fa-allergies"></i>
                         </div>
-                        <div class="stat-number">${avgCalories}</div>
-                        <div class="stat-label">Avg Calories</div>
+                        <div class="stat-number">${companyRestaurants.filter(r => r.hasAllergenInfo).length}</div>
+                        <div class="stat-label">Allergen Info</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon">
                             <i class="fas fa-chart-line"></i>
                         </div>
-                        <div class="stat-number">${nutritionCompletePercent}%</div>
-                        <div class="stat-label">Nutrition Complete</div>
+                        <div class="stat-number">${companyMenuItems.filter(item => item.allergens.length > 0).length}</div>
+                        <div class="stat-label">Items with Allergens</div>
                     </div>
                 </div>
 
@@ -3196,6 +2734,7 @@
                                                 <span><i class="fas fa-utensils"></i> ${restaurant.type}</span>
                                                 <span><i class="fas fa-map-marker-alt"></i> ${restaurant.location}</span>
                                                 <span><i class="fas fa-utensils"></i> ${restaurantMenu.length} menu items</span>
+                                                ${restaurant.hasAllergenInfo ? '<span style="color: var(--safe);"><i class="fas fa-check"></i> Allergen Info</span>' : '<span style="color: var(--warning);"><i class="fas fa-exclamation"></i> Needs Allergen Info</span>'}
                                             </p>
                                             ${restaurant.description ? `<p style="color: var(--gray); font-size: 0.95rem; margin-top: 10px;">${restaurant.description}</p>` : ''}
                                         </div>
@@ -3229,9 +2768,9 @@
                         ${companyMenuItems.length > 0 ? 
                             companyMenuItems.map(item => {
                                 const restaurant = restaurants.find(r => r.id === item.restaurantId);
-                                const hasNutrition = item.nutrition ? 
-                                    '<span style="color: var(--safe);"><i class="fas fa-check"></i> Nutrition Complete</span>' : 
-                                    '<span style="color: var(--warning);"><i class="fas fa-exclamation"></i> Needs Nutrition</span>';
+                                const hasAllergens = item.allergens.length > 0 ? 
+                                    '<span style="color: var(--warning);"><i class="fas fa-exclamation"></i> ' + item.allergens.length + ' allergens</span>' : 
+                                    '<span style="color: var(--safe);"><i class="fas fa-check"></i> Allergen-free</span>';
                                 return `
                                     <div class="list-item">
                                         <div class="list-item-info">
@@ -3239,16 +2778,12 @@
                                             <p>
                                                 <span><i class="fas fa-store"></i> ${restaurant?.name || 'Unknown'}</span>
                                                 <span><i class="fas fa-tag"></i> ${item.category}</span>
-                                                <span><i class="fas fa-allergies"></i> ${item.allergens.length} allergens</span>
-                                                ${hasNutrition}
+                                                ${hasAllergens}
                                             </p>
                                         </div>
                                         <div class="list-item-actions">
                                             <button class="action-btn edit-btn" onclick="editMenuItem(${item.id})" title="Edit Menu Item">
                                                 <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="action-btn nutrition-btn" onclick="openNutritionModal(${item.id})" title="Edit Nutrition">
-                                                <i class="fas fa-apple-alt"></i>
                                             </button>
                                             <button class="action-btn delete-btn" onclick="deleteMenuItem(${item.id})" title="Delete Menu Item">
                                                 <i class="fas fa-trash"></i>
@@ -3311,6 +2846,8 @@
                         return allergen ? allergen.name : 'Unknown';
                     });
                     menuText += `  Allergens: ${allergenNames.join(', ')}\n`;
+                } else {
+                    menuText += `  Allergens: None detected\n`;
                 }
                 menuText += '\n';
             });
@@ -3372,35 +2909,9 @@
             editMenuItemModal.classList.add('active');
         };
 
-        // Open nutrition modal
+        // Open nutrition modal - KEEPING BUT DISABLED
         window.openNutritionModal = function(itemId) {
-            const item = menuItems.find(m => m.id === itemId);
-            if (!item) return;
-            
-            document.getElementById('nutritionItemId').value = itemId;
-            
-            if (item.nutrition) {
-                document.getElementById('nutritionCalories').value = item.nutrition.calories || '';
-                document.getElementById('nutritionProtein').value = item.nutrition.protein || '';
-                document.getElementById('nutritionCarbs').value = item.nutrition.carbs || '';
-                document.getElementById('nutritionSugar').value = item.nutrition.sugar || '';
-                document.getElementById('nutritionFat').value = item.nutrition.fat || '';
-                document.getElementById('nutritionSaturatedFat').value = item.nutrition.saturatedFat || '';
-                document.getElementById('nutritionFiber').value = item.nutrition.fiber || '';
-                document.getElementById('nutritionSodium').value = item.nutrition.sodium || '';
-            } else {
-                // Set default values
-                document.getElementById('nutritionCalories').value = '';
-                document.getElementById('nutritionProtein').value = '';
-                document.getElementById('nutritionCarbs').value = '';
-                document.getElementById('nutritionSugar').value = '';
-                document.getElementById('nutritionFat').value = '';
-                document.getElementById('nutritionSaturatedFat').value = '';
-                document.getElementById('nutritionFiber').value = '';
-                document.getElementById('nutritionSodium').value = '';
-            }
-            
-            nutritionModal.classList.add('active');
+            showToast('Nutrition feature is currently disabled. This is an allergen-only version.', 'warning');
         };
 
         // Delete menu item
@@ -3498,9 +3009,7 @@
                 gps: restaurantGPS,
                 description: restaurantDescription,
                 hasAllergenInfo: false,
-                hasNutritionInfo: false,
-                allergensAvailable: false,
-                nutritionAvailable: false
+                allergensAvailable: false
             };
             
             restaurants.push(newRestaurant);
@@ -3577,8 +3086,7 @@
                 price: parseFloat(document.getElementById('menuItemPrice').value),
                 category: document.getElementById('menuItemCategory').value,
                 image: document.getElementById('menuItemImage').value || '',
-                allergens: selectedAllergenIds,
-                nutrition: null
+                allergens: selectedAllergenIds
             };
             
             menuItems.push(menuItemData);
@@ -3622,39 +3130,11 @@
             showToast('Menu item updated successfully!', 'success');
         }
 
-        // Handle nutrition form
+        // Handle nutrition form - DISABLED
         function handleNutritionForm(e) {
             e.preventDefault();
-            
-            const itemId = parseInt(document.getElementById('nutritionItemId').value);
-            const item = menuItems.find(m => m.id === itemId);
-            
-            if (!item) {
-                showToast('Menu item not found', 'error');
-                return;
-            }
-            
-            const nutritionData = {
-                calories: parseInt(document.getElementById('nutritionCalories').value) || 0,
-                protein: parseFloat(document.getElementById('nutritionProtein').value) || 0,
-                carbs: parseFloat(document.getElementById('nutritionCarbs').value) || 0,
-                sugar: parseFloat(document.getElementById('nutritionSugar').value) || 0,
-                fat: parseFloat(document.getElementById('nutritionFat').value) || 0,
-                saturatedFat: parseFloat(document.getElementById('nutritionSaturatedFat').value) || 0,
-                fiber: parseFloat(document.getElementById('nutritionFiber').value) || 0,
-                sodium: parseInt(document.getElementById('nutritionSodium').value) || 0
-            };
-            
-            // Update menu item
-            const itemIndex = menuItems.findIndex(m => m.id === itemId);
-            menuItems[itemIndex].nutrition = nutritionData;
-            
-            saveData();
-            
+            showToast('Nutrition feature is currently disabled. This is an allergen-only version.', 'warning');
             nutritionModal.classList.remove('active');
-            loadCompanyDashboard();
-            
-            showToast('Nutrition information saved successfully!', 'success');
         }
 
         // Logout
@@ -3728,21 +3208,6 @@
                     item.classList.remove('selected');
                 });
                 showToast('All restaurants cleared', 'success');
-            });
-            
-            // Nutrition filters
-            calorieRange.addEventListener('input', updateNutritionFilterDisplays);
-            proteinRange.addEventListener('input', updateNutritionFilterDisplays);
-            carbRange.addEventListener('input', updateNutritionFilterDisplays);
-            sugarRange.addEventListener('input', updateNutritionFilterDisplays);
-            
-            resetNutritionFilters.addEventListener('click', () => {
-                calorieRange.value = 0;
-                proteinRange.value = 0;
-                carbRange.value = 0;
-                sugarRange.value = 0;
-                updateNutritionFilterDisplays();
-                showToast('Nutrition filters reset', 'success');
             });
             
             // Forms
