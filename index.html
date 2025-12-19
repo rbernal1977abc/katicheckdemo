@@ -2,155 +2,153 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kati Check - Philippine Allergen & Nutrition Checker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kati Check - Philippine Allergen Checker</title>
+    
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* (All CSS styles remain exactly the same) */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         :root {
-            /* Color Scheme */
-            --primary: #e74c3c;
-            --primary-light: #fd7e7e;
-            --primary-dark: #c0392b;
-            --secondary: #27ae60;
-            --accent: #f39c12;
-            --light: #f8f9fa;
-            --dark: #2c3e50;
-            --gray: #7f8c8d;
-            --light-gray: #ecf0f1;
-            --safe: #2ecc71;
-            --warning: #f39c12;
-            --danger: #e74c3c;
-            
-            /* Nutrition Colors - KEEPING FOR FILTERS */
-            --nutrition-calories: #3498db;
-            --nutrition-protein: #9b59b6;
-            --nutrition-carbs: #2ecc71;
-            --nutrition-fat: #e67e22;
-            --nutrition-fiber: #1abc9c;
-            --nutrition-sodium: #95a5a6;
-            --nutrition-sugar: #e74c3c;
-            
-            /* Allergen Colors */
-            --allergen-gluten: #8e44ad;
-            --allergen-crustacean: #d35400;
-            --allergen-egg: #f39c12;
-            --allergen-fish: #3498db;
-            --allergen-peanut: #964b00;
-            --allergen-soy: #27ae60;
-            --allergen-milk: #f8c471;
-            --allergen-nuts: #8b4513;
-            --allergen-celery: #7dcea0;
-            --allergen-mustard: #f4d03f;
-            --allergen-sesame: #f0b27a;
-            --allergen-sulfite: #7f8c8d;
-            --allergen-lupin: #a569bd;
-            --allergen-mollusc: #16a085;
+            --primary: #d32f2f;
+            --primary-dark: #b71c1c;
+            --secondary: #2e7d32;
+            --accent: #ff9800;
+            --light: #f5f5f5;
+            --dark: #333333;
+            --gray: #757575;
+            --light-gray: #f0f0f0;
+            --safe: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --nutrition: #2196f3;
         }
 
         body {
-            background: #ffffff;
+            background-color: #fafafa;
             color: var(--dark);
-            line-height: 1.6;
-            min-height: 100vh;
+            line-height: 1.5;
+            font-size: 16px;
             overflow-x: hidden;
         }
 
         .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            max-width: 100%;
+            padding: 0 16px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 720px;
+                margin: 0 auto;
+            }
         }
 
         /* Header */
         header {
-            background: white;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             position: sticky;
             top: 0;
             z-index: 1000;
-            padding: 15px 0;
+            backdrop-filter: blur(10px);
         }
 
         .header-content {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            gap: 20px;
+            justify-content: space-between;
+            gap: 15px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             text-decoration: none;
         }
 
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            border-radius: 12px;
+        .shrimp-logo {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shrimp-logo svg {
+            width: 100%;
+            height: 100%;
+            fill: white;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .logo-text {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.8rem;
+            flex-direction: column;
         }
 
         .logo-text h1 {
             font-size: 1.8rem;
-            color: var(--primary);
             font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         .logo-text .tagline {
-            font-size: 0.85rem;
-            color: var(--gray);
+            font-size: 0.7rem;
+            opacity: 0.9;
             font-weight: 500;
+            margin-top: 2px;
         }
 
         .company-login-btn {
-            background: var(--primary);
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
             color: white;
-            border: none;
-            padding: 12px 25px;
+            padding: 10px 18px;
             border-radius: 25px;
             font-weight: 600;
+            font-size: 0.9rem;
             cursor: pointer;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
+            gap: 8px;
+            white-space: nowrap;
         }
 
         .company-login-btn:hover {
-            background: var(--primary-dark);
+            background: rgba(255,255,255,0.3);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
         }
 
         /* Main Content */
         main {
-            padding: 30px 0 50px;
+            padding: 25px 0 30px;
+            min-height: calc(100vh - 180px);
         }
 
         .section-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             color: var(--dark);
+            font-size: 1.5rem;
+            font-weight: 700;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
         }
 
         .section-title::after {
@@ -158,7 +156,7 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 60px;
+            width: 50px;
             height: 4px;
             background: var(--primary);
             border-radius: 2px;
@@ -166,482 +164,276 @@
 
         .card {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border: 1px solid #f0f0f0;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 22px;
+            margin-bottom: 22px;
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .hidden {
             display: none !important;
         }
 
-        /* Allergen Selection */
-        .allergen-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 20px;
-            margin-top: 25px;
+        /* User Interface */
+        .search-intro {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 0 10px;
         }
 
-        @media (max-width: 768px) {
+        .search-intro h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .search-intro p {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        .allergen-selection-section {
+            margin-bottom: 25px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-subtitle i {
+            color: var(--primary);
+        }
+
+        .allergen-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 480px) {
             .allergen-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 480px) {
-            .allergen-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
         .allergen-item {
-            background: var(--light);
-            border-radius: 12px;
-            padding: 25px 20px;
+            background: var(--light-gray);
+            border-radius: var(--radius-sm);
+            padding: 15px;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 15px;
+            gap: 12px;
             cursor: pointer;
-            border: 3px solid transparent;
-            transition: all 0.3s ease;
-            text-align: center;
-            min-height: 140px;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+            user-select: none;
         }
 
         .allergen-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         .allergen-item.selected {
-            background: white;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-        }
-
-        .allergen-item.selected::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
+            background: #ffebee;
+            border-color: var(--primary);
+            box-shadow: 0 2px 8px rgba(211, 47, 47, 0.2);
         }
 
         .allergen-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--light);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            color: var(--dark);
-            transition: all 0.3s ease;
-        }
-
-        .allergen-item.selected .allergen-icon {
-            background: var(--allergen-gluten);
-            color: white;
-            transform: scale(1.1);
-        }
-
-        .allergen-name {
-            font-weight: 600;
-            font-size: 1rem;
-            color: var(--dark);
-            line-height: 1.3;
-            text-align: center;
-            width: 100%;
-        }
-
-        /* Allergen-specific colors - ALL 25 ALLERGENS INCLUDED */
-        .allergen-item[data-name="Gluten"] { border-color: var(--allergen-gluten); }
-        .allergen-item[data-name="Gluten"].selected .allergen-icon { background: var(--allergen-gluten); }
-        .allergen-item[data-name="Gluten"].selected::before { background: var(--allergen-gluten); }
-
-        .allergen-item[data-name="Shrimp"] { border-color: var(--allergen-crustacean); }
-        .allergen-item[data-name="Shrimp"].selected .allergen-icon { background: var(--allergen-crustacean); }
-        .allergen-item[data-name="Shrimp"].selected::before { background: var(--allergen-crustacean); }
-
-        .allergen-item[data-name="Crab"] { border-color: var(--allergen-crustacean); }
-        .allergen-item[data-name="Crab"].selected .allergen-icon { background: var(--allergen-crustacean); }
-        .allergen-item[data-name="Crab"].selected::before { background: var(--allergen-crustacean); }
-
-        .allergen-item[data-name="Lobster"] { border-color: var(--allergen-crustacean); }
-        .allergen-item[data-name="Lobster"].selected .allergen-icon { background: var(--allergen-crustacean); }
-        .allergen-item[data-name="Lobster"].selected::before { background: var(--allergen-crustacean); }
-
-        .allergen-item[data-name="Eggs"] { border-color: var(--allergen-egg); }
-        .allergen-item[data-name="Eggs"].selected .allergen-icon { background: var(--allergen-egg); }
-        .allergen-item[data-name="Eggs"].selected::before { background: var(--allergen-egg); }
-
-        .allergen-item[data-name="Fish"] { border-color: var(--allergen-fish); }
-        .allergen-item[data-name="Fish"].selected .allergen-icon { background: var(--allergen-fish); }
-        .allergen-item[data-name="Fish"].selected::before { background: var(--allergen-fish); }
-
-        .allergen-item[data-name="Peanuts"] { border-color: var(--allergen-peanut); }
-        .allergen-item[data-name="Peanuts"].selected .allergen-icon { background: var(--allergen-peanut); }
-        .allergen-item[data-name="Peanuts"].selected::before { background: var(--allergen-peanut); }
-
-        .allergen-item[data-name="Soy"] { border-color: var(--allergen-soy); }
-        .allergen-item[data-name="Soy"].selected .allergen-icon { background: var(--allergen-soy); }
-        .allergen-item[data-name="Soy"].selected::before { background: var(--allergen-soy); }
-
-        .allergen-item[data-name="Milk"] { border-color: var(--allergen-milk); }
-        .allergen-item[data-name="Milk"].selected .allergen-icon { background: var(--allergen-milk); color: var(--dark); }
-        .allergen-item[data-name="Milk"].selected::before { background: var(--allergen-milk); }
-
-        .allergen-item[data-name="Tree Nuts"] { border-color: var(--allergen-nuts); }
-        .allergen-item[data-name="Tree Nuts"].selected .allergen-icon { background: var(--allergen-nuts); }
-        .allergen-item[data-name="Tree Nuts"].selected::before { background: var(--allergen-nuts); }
-
-        .allergen-item[data-name="Celery"] { border-color: var(--allergen-celery); }
-        .allergen-item[data-name="Celery"].selected .allergen-icon { background: var(--allergen-celery); }
-        .allergen-item[data-name="Celery"].selected::before { background: var(--allergen-celery); }
-
-        .allergen-item[data-name="Mustard"] { border-color: var(--allergen-mustard); }
-        .allergen-item[data-name="Mustard"].selected .allergen-icon { background: var(--allergen-mustard); }
-        .allergen-item[data-name="Mustard"].selected::before { background: var(--allergen-mustard); }
-
-        .allergen-item[data-name="Sesame"] { border-color: var(--allergen-sesame); }
-        .allergen-item[data-name="Sesame"].selected .allergen-icon { background: var(--allergen-sesame); }
-        .allergen-item[data-name="Sesame"].selected::before { background: var(--allergen-sesame); }
-
-        .allergen-item[data-name="Sulfites"] { border-color: var(--allergen-sulfite); }
-        .allergen-item[data-name="Sulfites"].selected .allergen-icon { background: var(--allergen-sulfite); }
-        .allergen-item[data-name="Sulfites"].selected::before { background: var(--allergen-sulfite); }
-
-        .allergen-item[data-name="Lupin"] { border-color: var(--allergen-lupin); }
-        .allergen-item[data-name="Lupin"].selected .allergen-icon { background: var(--allergen-lupin); }
-        .allergen-item[data-name="Lupin"].selected::before { background: var(--allergen-lupin); }
-
-        .allergen-item[data-name="Molluscs"] { border-color: var(--allergen-mollusc); }
-        .allergen-item[data-name="Molluscs"].selected .allergen-icon { background: var(--allergen-mollusc); }
-        .allergen-item[data-name="Molluscs"].selected::before { background: var(--allergen-mollusc); }
-
-        .allergen-item[data-name="Crustaceans"] { border-color: var(--allergen-crustacean); }
-        .allergen-item[data-name="Crustaceans"].selected .allergen-icon { background: var(--allergen-crustacean); }
-        .allergen-item[data-name="Crustaceans"].selected::before { background: var(--allergen-crustacean); }
-
-        .allergen-item[data-name="Shellfish"] { border-color: var(--allergen-crustacean); }
-        .allergen-item[data-name="Shellfish"].selected .allergen-icon { background: var(--allergen-crustacean); }
-        .allergen-item[data-name="Shellfish"].selected::before { background: var(--allergen-crustacean); }
-
-        .allergen-item[data-name="Wheat"] { border-color: var(--allergen-gluten); }
-        .allergen-item[data-name="Wheat"].selected .allergen-icon { background: var(--allergen-gluten); }
-        .allergen-item[data-name="Wheat"].selected::before { background: var(--allergen-gluten); }
-
-        .allergen-item[data-name="Barley"] { border-color: var(--allergen-gluten); }
-        .allergen-item[data-name="Barley"].selected .allergen-icon { background: var(--allergen-gluten); }
-        .allergen-item[data-name="Barley"].selected::before { background: var(--allergen-gluten); }
-
-        .allergen-item[data-name="Rye"] { border-color: var(--allergen-gluten); }
-        .allergen-item[data-name="Rye"].selected .allergen-icon { background: var(--allergen-gluten); }
-        .allergen-item[data-name="Rye"].selected::before { background: var(--allergen-gluten); }
-
-        .allergen-item[data-name="Oats"] { border-color: var(--allergen-gluten); }
-        .allergen-item[data-name="Oats"].selected .allergen-icon { background: var(--allergen-gluten); }
-        .allergen-item[data-name="Oats"].selected::before { background: var(--allergen-gluten); }
-
-        .allergen-item[data-name="MSG"] { border-color: var(--allergen-sulfite); }
-        .allergen-item[data-name="MSG"].selected .allergen-icon { background: var(--allergen-sulfite); }
-        .allergen-item[data-name="MSG"].selected::before { background: var(--allergen-sulfite); }
-
-        .allergen-item[data-name="Peanut Oil"] { border-color: var(--allergen-peanut); }
-        .allergen-item[data-name="Peanut Oil"].selected .allergen-icon { background: var(--allergen-peanut); }
-        .allergen-item[data-name="Peanut Oil"].selected::before { background: var(--allergen-peanut); }
-
-        .allergen-item[data-name="Soybean"] { border-color: var(--allergen-soy); }
-        .allergen-item[data-name="Soybean"].selected .allergen-icon { background: var(--allergen-soy); }
-        .allergen-item[data-name="Soybean"].selected::before { background: var(--allergen-soy); }
-
-        /* Restaurant Selection */
-        .restaurant-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 20px;
-            margin-top: 25px;
-        }
-
-        .restaurant-item {
-            background: var(--light);
-            border-radius: 12px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-            border: 3px solid transparent;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .restaurant-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .restaurant-item.selected {
+            width: 36px;
+            height: 36px;
             background: white;
-            border-color: var(--secondary);
-            box-shadow: 0 8px 25px rgba(46, 204, 113, 0.15);
-        }
-
-        .restaurant-item.selected::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--secondary);
-        }
-
-        .restaurant-icon {
-            width: 45px;
-            height: 45px;
-            background: var(--light-gray);
-            border-radius: 10px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .allergen-item.selected .allergen-icon {
+            background: var(--primary);
+            color: white;
+        }
+
+        .allergen-name {
+            font-weight: 600;
+            font-size: 0.95rem;
             color: var(--dark);
-            transition: all 0.3s ease;
+        }
+
+        .allergen-item.selected .allergen-name {
+            color: var(--primary);
+        }
+
+        .allergen-checkbox {
+            display: none;
+        }
+
+        /* Restaurant Filter */
+        .restaurant-filter-section {
+            margin-bottom: 25px;
+        }
+
+        .restaurant-filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .restaurant-filter-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .restaurant-item {
+            background: var(--light-gray);
+            border-radius: var(--radius-sm);
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+            user-select: none;
+        }
+
+        .restaurant-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .restaurant-item.selected {
+            background: #e8f5e9;
+            border-color: var(--secondary);
+        }
+
+        .restaurant-icon {
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--secondary);
+            flex-shrink: 0;
         }
 
         .restaurant-item.selected .restaurant-icon {
             background: var(--secondary);
             color: white;
-            transform: scale(1.1);
         }
 
         .restaurant-name {
             font-weight: 600;
-            font-size: 1rem;
-            color: var(--dark);
-            flex: 1;
-        }
-
-        /* Nutrition Filters - KEEPING THESE */
-        .nutrition-filters {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-
-        .filter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            margin-top: 25px;
-        }
-
-        .filter-group {
-            margin-bottom: 25px;
-        }
-
-        .filter-label {
-            display: block;
-            margin-bottom: 12px;
-            font-weight: 600;
-            color: var(--dark);
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .filter-label i {
-            color: var(--nutrition-calories);
-        }
-
-        .filter-range {
-            width: 100%;
-            height: 8px;
-            -webkit-appearance: none;
-            background: var(--light-gray);
-            border-radius: 4px;
-            outline: none;
-        }
-
-        .filter-range::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 22px;
-            height: 22px;
-            background: var(--primary);
-            border-radius: 50%;
-            cursor: pointer;
-            border: 3px solid white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .range-values {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-            color: var(--gray);
             font-size: 0.9rem;
+            color: var(--dark);
         }
 
-        /* Allergen Selection in Menu Item Form */
-        .allergen-select-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-            max-height: 300px;
-            overflow-y: auto;
-            padding: 15px;
-            border: 2px solid var(--light-gray);
-            border-radius: 10px;
+        .restaurant-item.selected .restaurant-name {
+            color: var(--secondary);
         }
 
-        .allergen-select-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            padding: 10px;
-            border: 2px solid var(--light-gray);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .allergen-select-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .allergen-select-item.selected {
-            border-color: var(--primary);
-            background-color: rgba(231, 76, 60, 0.1);
-        }
-
-        .allergen-select-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        .allergen-select-name {
-            font-size: 0.85rem;
-            text-align: center;
-            font-weight: 600;
+        .restaurant-checkbox {
+            display: none;
         }
 
         /* Search Button */
         .search-button-container {
-            text-align: center;
-            margin: 40px 0;
+            position: sticky;
+            bottom: 20px;
+            z-index: 100;
+            margin-top: 30px;
+            padding: 0 16px;
         }
 
         .search-button {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border: none;
-            padding: 20px 50px;
-            font-size: 1.2rem;
-            font-weight: 700;
             border-radius: 50px;
+            padding: 18px 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: inline-flex;
+            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.3);
+            width: 100%;
+            display: flex;
             align-items: center;
-            gap: 15px;
-            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+            justify-content: center;
+            gap: 12px;
         }
 
         .search-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(231, 76, 60, 0.4);
-            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(211, 47, 47, 0.4);
+        }
+
+        .search-button:active {
+            transform: translateY(-1px);
         }
 
         /* Results */
+        .results-container {
+            margin-top: 25px;
+        }
+
         .results-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 20px;
+            margin-bottom: 20px;
         }
 
         .results-count {
-            background: var(--light);
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: 600;
-            color: var(--dark);
+            font-size: 1rem;
+            color: var(--gray);
         }
 
         .clear-search {
-            background: var(--light);
-            border: 2px solid var(--light-gray);
+            background: none;
+            border: 1px solid var(--gray);
             color: var(--gray);
-            padding: 10px 25px;
-            border-radius: 25px;
-            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .clear-search:hover {
             background: var(--light-gray);
-            transform: translateY(-2px);
         }
 
         .result-item {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border-left: 8px solid var(--safe);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--safe);
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .result-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, var(--primary), var(--primary-light));
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
 
         .result-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-
-        .result-item:hover::before {
-            opacity: 1;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
         }
 
         .result-item.unsafe {
@@ -656,25 +448,23 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 20px;
+            margin-bottom: 12px;
         }
 
         .food-name {
-            font-size: 1.5rem;
-            font-weight: 800;
+            font-size: 1.2rem;
+            font-weight: 700;
             color: var(--dark);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .restaurant-info {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 8px;
+            font-size: 0.9rem;
             color: var(--gray);
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+            margin-bottom: 12px;
         }
 
         .restaurant-info i {
@@ -682,74 +472,272 @@
         }
 
         .food-description {
-            color: var(--dark);
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 25px;
-            padding: 20px;
-            background: var(--light);
-            border-radius: 10px;
-            border-left: 4px solid var(--primary);
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
         }
 
         .allergen-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 8px;
+            margin-bottom: 15px;
         }
 
         .allergen-tag {
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            gap: 5px;
         }
 
         .allergen-tag.safe {
-            background: rgba(46, 204, 113, 0.1);
-            color: var(--safe);
-            border: 2px solid rgba(46, 204, 113, 0.2);
+            background: #e8f5e9;
+            color: var(--secondary);
         }
 
         .allergen-tag.contains {
-            background: rgba(231, 76, 60, 0.1);
+            background: #ffebee;
             color: var(--danger);
-            border: 2px solid rgba(231, 76, 60, 0.2);
         }
 
         .allergen-tag.may-contain {
-            background: rgba(243, 156, 18, 0.1);
-            color: var(--warning);
-            border: 2px solid rgba(243, 156, 18, 0.2);
+            background: #fff3e0;
+            color: #ef6c00;
         }
 
-        /* Forms */
-        .form-group {
-            margin-bottom: 30px;
+        /* Nutritional Information Styles */
+        .nutrition-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--light-gray);
         }
 
-        .form-label {
-            display: block;
-            margin-bottom: 12px;
-            font-weight: 600;
-            color: var(--dark);
-            font-size: 1rem;
+        .nutrition-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--nutrition);
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
+        .nutrition-title i {
+            color: var(--nutrition);
+        }
+
+        .nutrition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 480px) {
+            .nutrition-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .nutrition-item {
+            background: #e3f2fd;
+            border-radius: var(--radius-sm);
+            padding: 12px;
+            text-align: center;
+        }
+
+        .nutrition-value {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--nutrition);
+            margin-bottom: 5px;
+        }
+
+        .nutrition-label {
+            font-size: 0.75rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nutrition-unit {
+            font-size: 0.7rem;
+            color: var(--nutrition);
+            margin-left: 2px;
+        }
+
+        .daily-value {
+            font-size: 0.8rem;
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        .nutrition-toggle {
+            background: none;
+            border: none;
+            color: var(--nutrition);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 0;
+            margin-top: 10px;
+        }
+
+        .nutrition-toggle:hover {
+            color: #1976d2;
+        }
+
+        .safety-badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .safety-badge.safe {
+            background: #e8f5e9;
+            color: var(--secondary);
+        }
+
+        .safety-badge.unsafe {
+            background: #ffebee;
+            color: var(--danger);
+        }
+
+        .safety-badge.may-contain {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        /* Nutritional Filter */
+        .nutrition-filter-section {
+            margin-bottom: 25px;
+        }
+
+        .nutrition-filter-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            cursor: pointer;
+            padding: 12px;
+            background: var(--light-gray);
+            border-radius: var(--radius-sm);
+        }
+
+        .nutrition-filter-content {
+            display: none;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: var(--radius-sm);
+            margin-top: 10px;
+        }
+
+        .nutrition-filter-content.active {
+            display: block;
+        }
+
+        .filter-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .filter-group {
+            margin-bottom: 15px;
+        }
+
+        .filter-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+
+        .filter-input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--light-gray);
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+        }
+
+        .filter-input:focus {
+            outline: none;
+            border-color: var(--nutrition);
+        }
+
+        .range-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+
+        /* Company Login/Register */
+        .auth-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .auth-tabs {
+            display: flex;
+            background: var(--light-gray);
+            border-radius: var(--radius-sm);
+            padding: 6px;
+            margin-bottom: 25px;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 14px;
+            text-align: center;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+        }
+
+        .auth-tab.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
         .form-input {
             width: 100%;
-            padding: 18px;
+            padding: 16px;
             border: 2px solid var(--light-gray);
-            border-radius: 10px;
+            border-radius: var(--radius-sm);
             font-size: 1rem;
             transition: all 0.3s ease;
             background: white;
@@ -758,84 +746,48 @@
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
         }
 
         .auth-button {
             width: 100%;
-            padding: 20px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 1.2rem;
+            border-radius: var(--radius-sm);
+            font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
+            margin-top: 10px;
         }
 
         .auth-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
-            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.3);
         }
 
-        .back-button {
+        .back-to-search {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 8px;
             color: var(--primary);
-            background: var(--light);
-            border: 2px solid var(--light-gray);
+            background: none;
+            border: none;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 30px;
-            padding: 18px;
+            margin-top: 25px;
+            padding: 12px;
             width: 100%;
-            border-radius: 10px;
-            transition: all 0.3s ease;
+            border-radius: var(--radius-sm);
+            transition: all 0.2s ease;
         }
 
-        .back-button:hover {
+        .back-to-search:hover {
             background: var(--light-gray);
-            transform: translateY(-2px);
-        }
-
-        /* Auth Tabs */
-        .auth-tabs {
-            display: flex;
-            background: var(--light);
-            border-radius: 10px;
-            padding: 8px;
-            margin-bottom: 30px;
-            border: 2px solid var(--light-gray);
-        }
-
-        .auth-tab {
-            flex: 1;
-            padding: 18px;
-            text-align: center;
-            background: none;
-            border: none;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--gray);
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .auth-tab.active {
-            background: white;
-            color: var(--primary);
-            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
         }
 
         /* Company Dashboard */
@@ -843,87 +795,57 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 35px;
-            padding-bottom: 25px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
             border-bottom: 2px solid var(--light-gray);
-            flex-wrap: wrap;
-            gap: 20px;
         }
 
         .company-info h2 {
             color: var(--primary);
-            margin-bottom: 10px;
-            font-size: 1.8rem;
+            margin-bottom: 5px;
+            font-size: 1.5rem;
         }
 
         .company-info p {
             color: var(--gray);
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         .dashboard-actions {
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .logout-btn {
-            background: var(--light);
-            border: 2px solid var(--light-gray);
-            color: var(--danger);
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
             gap: 10px;
-        }
-
-        .logout-btn:hover {
-            background: var(--danger);
-            color: white;
-            transform: translateY(-2px);
         }
 
         .dashboard-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
         }
 
         .stat-card {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
+            border-radius: var(--radius);
+            padding: 20px;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border-top: 5px solid var(--primary);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
         }
 
         .stat-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 15px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 25px;
+            margin: 0 auto 15px;
             color: white;
-            font-size: 2rem;
+            font-size: 1.5rem;
         }
 
         .stat-number {
-            font-size: 2.8rem;
+            font-size: 2rem;
             font-weight: 800;
             color: var(--dark);
             margin-bottom: 5px;
@@ -931,165 +853,139 @@
 
         .stat-label {
             color: var(--gray);
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
         .dashboard-section {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .dashboard-section-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 25px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
             color: var(--dark);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--light-gray);
         }
 
         .add-button {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            background: var(--primary);
             color: white;
             border: none;
-            border-radius: 10px;
-            padding: 12px 25px;
-            font-size: 1rem;
-            font-weight: 700;
+            border-radius: var(--radius-sm);
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             transition: all 0.3s ease;
         }
 
         .add-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+            background: var(--primary-dark);
+            transform: translateY(-2px);
         }
 
         .dashboard-list {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
         }
 
         .list-item {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            transition: all 0.3s ease;
-            border-left: 5px solid var(--primary);
-        }
-
-        .list-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .list-item-info h4 {
-            font-size: 1.3rem;
-            font-weight: 800;
-            margin-bottom: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
             color: var(--dark);
         }
 
         .list-item-info p {
             color: var(--gray);
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
+            font-size: 0.9rem;
         }
 
         .list-item-actions {
             display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .action-btn {
-            min-width: 50px;
-            height: 50px;
-            border-radius: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             border: none;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
+            transition: all 0.2s ease;
+            font-size: 1rem;
         }
 
         .edit-btn {
-            background: rgba(52, 152, 219, 0.1);
-            color: var(--nutrition-calories);
+            background: #e3f2fd;
+            color: #1976d2;
         }
 
         .delete-btn {
-            background: rgba(231, 76, 60, 0.1);
+            background: #ffebee;
             color: var(--danger);
         }
 
         .nutrition-btn {
-            background: rgba(46, 204, 113, 0.1);
-            color: var(--nutrition-carbs);
-        }
-
-        .view-btn {
-            background: rgba(155, 89, 182, 0.1);
-            color: var(--nutrition-protein);
+            background: #e3f2fd;
+            color: var(--nutrition);
         }
 
         .action-btn:hover {
             transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         /* Footer */
         footer {
             background: var(--dark);
             color: white;
-            padding: 50px 0 30px;
-            margin-top: 60px;
+            padding: 30px 0 20px;
+            margin-top: 40px;
         }
 
         .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .footer-section {
+            flex: 1;
         }
 
         .footer-section h3 {
-            color: var(--primary-light);
-            font-size: 1.4rem;
-            margin-bottom: 25px;
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 18px;
             font-weight: 700;
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: linear-gradient(to right, var(--primary), var(--primary-light));
-            border-radius: 2px;
         }
 
         .footer-links {
@@ -1097,136 +993,68 @@
         }
 
         .footer-links li {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
             color: #bbb;
             text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1rem;
+            transition: color 0.2s ease;
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
         }
 
         .footer-links a:hover {
             color: white;
-            transform: translateX(5px);
         }
 
         .footer-brand {
             display: flex;
             align-items: center;
-            gap: 20px;
-            margin-bottom: 25px;
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
-        .footer-brand .logo-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
+        .footer-logo {
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+
+        .footer-logo svg {
+            width: 100%;
+            height: 100%;
+            fill: white;
         }
 
         .footer-brand-text h3 {
             color: white;
-            margin-bottom: 8px;
-            font-size: 1.6rem;
+            margin-bottom: 5px;
         }
 
         .footer-brand-text p {
             color: #bbb;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .powered-by {
             text-align: center;
-            padding-top: 40px;
-            margin-top: 40px;
-            border-top: 1px solid #34495e;
-            color: #bbb;
-            font-size: 0.95rem;
+            padding-top: 25px;
+            margin-top: 30px;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .powered-by strong {
-            color: var(--primary-light);
+            color: var(--accent);
             font-weight: 700;
-        }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            background: white;
-            border-radius: 15px;
-            padding: 20px 25px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            z-index: 3000;
-            transform: translateX(150%);
-            transition: transform 0.4s ease;
-            border-left: 5px solid var(--safe);
-            max-width: 400px;
-        }
-
-        .toast.show {
-            transform: translateX(0);
-        }
-
-        .toast.success {
-            border-left-color: var(--safe);
-        }
-
-        .toast.error {
-            border-left-color: var(--danger);
-        }
-
-        .toast.warning {
-            border-left-color: var(--warning);
-        }
-
-        .toast i {
-            font-size: 1.8rem;
-        }
-
-        .toast.success i { color: var(--safe); }
-        .toast.error i { color: var(--danger); }
-        .toast.warning i { color: var(--warning); }
-
-        .toast-content h4 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-            color: var(--dark);
-        }
-
-        .toast-content p {
-            font-size: 1rem;
-            color: var(--gray);
-        }
-
-        /* Loading Spinner */
-        .spinner {
-            width: 60px;
-            height: 60px;
-            border: 5px solid var(--light-gray);
-            border-top: 5px solid var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 50px auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         /* Modal */
@@ -1236,7 +1064,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.7);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1254,205 +1082,141 @@
 
         .modal-content {
             background: white;
-            border-radius: 20px;
-            padding: 40px;
+            border-radius: var(--radius);
+            padding: 30px;
             width: 100%;
-            max-width: 600px;
+            max-width: 500px;
             max-height: 90vh;
             overflow-y: auto;
-            transform: translateY(30px) scale(0.95);
-            transition: all 0.4s ease;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
         }
 
         .modal.active .modal-content {
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
             border-bottom: 2px solid var(--light-gray);
         }
 
         .modal-header h3 {
             color: var(--primary);
-            font-size: 1.8rem;
-            font-weight: 800;
+            font-size: 1.5rem;
         }
 
         .close-modal {
-            background: var(--light);
+            background: none;
             border: none;
             font-size: 1.8rem;
             color: var(--gray);
             cursor: pointer;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .close-modal:hover {
             background: var(--light-gray);
-            transform: rotate(90deg);
+        }
+
+        /* Nutrition Modal */
+        .nutrition-input-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .nutrition-input {
+            padding: 12px;
+            border: 2px solid var(--light-gray);
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+        }
+
+        .nutrition-input:focus {
+            outline: none;
+            border-color: var(--nutrition);
         }
 
         /* No Results */
         .no-results {
             text-align: center;
-            padding: 60px 30px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding: 40px 20px;
         }
 
         .no-results-icon {
-            font-size: 5rem;
+            font-size: 4rem;
             color: var(--light-gray);
-            margin-bottom: 30px;
-            opacity: 0.5;
+            margin-bottom: 20px;
         }
 
         .no-results h3 {
-            color: var(--dark);
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+            color: var(--gray);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
         }
 
         .no-results p {
             color: var(--gray);
-            font-size: 1.1rem;
-            margin-bottom: 30px;
+            font-size: 1rem;
         }
 
-        /* Email Confirmation */
-        .email-confirmation {
-            text-align: center;
-            padding: 40px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            margin: 40px auto;
-            max-width: 500px;
+        /* Loading Spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--light-gray);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
         }
 
-        .email-confirmation i {
-            font-size: 4rem;
-            color: var(--safe);
-            margin-bottom: 20px;
-        }
-
-        .email-confirmation h3 {
-            font-size: 1.8rem;
-            color: var(--dark);
-            margin-bottom: 15px;
-        }
-
-        .email-confirmation p {
-            color: var(--gray);
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-            }
-            
-            .logo {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .dashboard-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-            }
-            
-            .dashboard-actions {
-                justify-content: center;
-            }
-            
-            .modal-content {
-                padding: 25px;
-                margin: 10px;
-            }
-            
-            .nutrition-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .allergen-select-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .allergen-grid,
-            .restaurant-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nutrition-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .filter-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .list-item {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .list-item-actions {
-                justify-content: center;
-            }
-            
-            .allergen-select-grid {
-                grid-template-columns: 1fr;
-            }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <!-- Toast Notification -->
-    <div id="toast" class="toast">
-        <i class="fas fa-check-circle"></i>
-        <div class="toast-content">
-            <h4>Success</h4>
-            <p id="toastMessage">Operation completed successfully</p>
-        </div>
-    </div>
-
     <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
                 <a href="#" class="logo" id="homeLink">
-                    <div class="logo-icon">
-                        <i class="fas fa-shrimp"></i>
+                    <div class="shrimp-logo">
+                        <svg viewBox="0 0 100 100">
+                            <path d="M75,50 Q80,40 85,45 Q90,50 85,55 Q80,60 75,50" />
+                            <path d="M65,50 Q70,40 75,45 Q80,50 75,55 Q70,60 65,50" />
+                            <path d="M55,50 Q60,40 65,45 Q70,50 65,55 Q60,60 55,50" />
+                            <path d="M45,50 Q50,40 55,45 Q60,50 55,55 Q50,60 45,50" />
+                            <path d="M35,50 Q40,40 45,45 Q50,50 45,55 Q40,60 35,50" />
+                            <path d="M25,50 Q30,40 35,45 Q40,50 35,55 Q30,60 25,50" />
+                            <path d="M15,50 Q20,40 25,45 Q30,50 25,55 Q20,60 15,50" />
+                            <circle cx="80" cy="45" r="3" />
+                            <circle cx="80" cy="55" r="3" />
+                            <path d="M10,50 L5,50" stroke-width="3" stroke-linecap="round" />
+                            <path d="M85,50 L95,50" stroke-width="3" stroke-linecap="round" />
+                        </svg>
                     </div>
                     <div class="logo-text">
                         <h1>Kati Check</h1>
-                        <span class="tagline">Philippine Allergen Checker</span>
+                        <span class="tagline">Philippine Allergen & Nutrition Checker</span>
                     </div>
                 </a>
                 <button class="company-login-btn" id="companyLoginBtn">
-                    <i class="fas fa-store"></i> Restaurant Login
+                    <i class="fas fa-store"></i> For Restaurants
                 </button>
             </div>
         </div>
@@ -1462,61 +1226,107 @@
     <main class="container">
         <!-- User Interface (Default View) -->
         <div id="userInterface">
-            <div class="card">
-                <h2 class="section-title">Check for Allergens</h2>
-                <p style="color: var(--gray); margin-bottom: 25px; font-size: 1.1rem;">Select your allergens and search restaurant menus across the Philippines</p>
+            <div class="search-intro">
+                <h2>Check for Allergens & Nutrition</h2>
+                <p>Select your allergens and search restaurant menus across the Philippines with nutritional information</p>
+            </div>
 
-                <!-- Allergen Selection -->
-                <div class="allergen-selection-section">
-                    <h3 class="section-subtitle" style="font-size: 1.3rem; color: var(--dark); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-allergies" style="color: var(--primary);"></i> Select Your Allergens
-                    </h3>
-                    <p style="color: var(--gray); margin-bottom: 20px;">Tap on allergens you want to avoid (International & Philippine Standards)</p>
-                    <div class="allergen-grid" id="allergenGrid">
-                        <!-- Allergens will be populated by JavaScript -->
-                    </div>
+            <!-- Allergen Selection -->
+            <div class="card allergen-selection-section">
+                <h3 class="section-subtitle"><i class="fas fa-allergies"></i> Select Your Allergens</h3>
+                <p style="color: var(--gray); margin-bottom: 15px; font-size: 0.95rem;">Tap on allergens you want to avoid</p>
+                <div class="allergen-grid" id="allergenGrid">
+                    <!-- Allergens will be populated by JavaScript -->
                 </div>
+            </div>
 
-                <!-- Restaurant Selection -->
-                <div class="restaurant-selection-section" style="margin-top: 40px;">
-                    <h3 class="section-subtitle" style="font-size: 1.3rem; color: var(--dark); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-utensils" style="color: var(--primary);"></i> Select Restaurants
-                    </h3>
-                    <p style="color: var(--gray); margin-bottom: 20px;">Choose specific restaurants to search</p>
-                    <div class="restaurant-grid" id="restaurantGrid">
-                        <!-- Restaurants will be populated by JavaScript -->
-                    </div>
-                    <div style="margin-top: 25px; display: flex; gap: 15px; flex-wrap: wrap;">
-                        <button class="restaurant-item" id="selectAllRestaurants" style="justify-content: center; min-width: 150px;">
-                            <i class="fas fa-check-double"></i> Select All
-                        </button>
-                        <button class="restaurant-item" id="clearAllRestaurants" style="justify-content: center; min-width: 150px;">
-                            <i class="fas fa-times-circle"></i> Clear All
-                        </button>
-                    </div>
+            <!-- Restaurant Filter -->
+            <div class="card restaurant-filter-section">
+                <h3 class="section-subtitle"><i class="fas fa-utensils"></i> Select Restaurants</h3>
+                <p style="color: var(--gray); margin-bottom: 15px; font-size: 0.95rem;">Choose specific restaurants to search</p>
+                <div class="restaurant-filter-grid" id="restaurantGrid">
+                    <!-- Restaurants will be populated by JavaScript -->
                 </div>
-
-                <!-- Search Button -->
-                <div class="search-button-container">
-                    <button class="search-button" id="searchButton">
-                        <i class="fas fa-search"></i> Search Menus
+                <div style="margin-top: 15px; display: flex; gap: 10px;">
+                    <button class="restaurant-item" id="selectAllRestaurants" style="justify-content: center; padding: 12px;">
+                        <span>Select All</span>
+                    </button>
+                    <button class="restaurant-item" id="clearAllRestaurants" style="justify-content: center; padding: 12px;">
+                        <span>Clear All</span>
                     </button>
                 </div>
             </div>
 
+            <!-- Nutritional Filter (Optional) -->
+            <div class="card nutrition-filter-section">
+                <div class="nutrition-filter-toggle" id="nutritionFilterToggle">
+                    <div>
+                        <h3 class="section-subtitle"><i class="fas fa-apple-alt"></i> Nutritional Filters (Optional)</h3>
+                        <p style="color: var(--gray); font-size: 0.9rem;">Filter by calories, protein, carbs, etc.</p>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="nutrition-filter-content" id="nutritionFilterContent">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label class="filter-label">Max Calories (kcal)</label>
+                            <input type="range" class="filter-input" id="calorieRange" min="0" max="2000" step="50" value="2000">
+                            <div class="range-display">
+                                <span>0</span>
+                                <span id="calorieValue">2000 kcal</span>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Min Protein (g)</label>
+                            <input type="range" class="filter-input" id="proteinRange" min="0" max="100" step="5" value="0">
+                            <div class="range-display">
+                                <span>0g</span>
+                                <span id="proteinValue">100g</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label class="filter-label">Max Carbs (g)</label>
+                            <input type="range" class="filter-input" id="carbRange" min="0" max="200" step="10" value="200">
+                            <div class="range-display">
+                                <span>0g</span>
+                                <span id="carbValue">200g</span>
+                            </div>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">Max Sugar (g)</label>
+                            <input type="range" class="filter-input" id="sugarRange" min="0" max="100" step="5" value="100">
+                            <div class="range-display">
+                                <span>0g</span>
+                                <span id="sugarValue">100g</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="clear-search" id="resetNutritionFilters" style="width: 100%; margin-top: 10px;">
+                        <i class="fas fa-redo"></i> Reset Nutrition Filters
+                    </button>
+                </div>
+            </div>
+
+            <!-- Search Button -->
+            <div class="search-button-container">
+                <button class="search-button" id="searchButton">
+                    <i class="fas fa-search"></i> Search Menus
+                </button>
+            </div>
+
             <!-- Search Results -->
             <div id="searchResultsContainer" class="hidden">
-                <div class="card">
-                    <div class="results-header">
-                        <h3 class="section-title">Search Results</h3>
-                        <div class="results-count" id="resultsCount">0 items found</div>
-                    </div>
-                    <button class="clear-search" id="clearSearch">
-                        <i class="fas fa-times"></i> Clear Search
-                    </button>
-                    <div class="results-container" id="searchResults" style="margin-top: 30px;">
-                        <!-- Results will be displayed here -->
-                    </div>
+                <div class="results-header">
+                    <h3 class="section-title">Search Results</h3>
+                    <div class="results-count" id="resultsCount">0 items found</div>
+                </div>
+                <button class="clear-search" id="clearSearch">
+                    <i class="fas fa-times"></i> Clear Search
+                </button>
+                <div class="results-container" id="searchResults">
+                    <!-- Results will be displayed here -->
                 </div>
             </div>
 
@@ -1527,7 +1337,7 @@
                 </div>
                 <h3>No matching menu items found</h3>
                 <p>Try adjusting your allergen selections or restaurant filters</p>
-                <button class="auth-button" id="backToSearchFromNoResults" style="max-width: 250px; margin: 0 auto;">
+                <button class="back-to-search" id="backToSearchFromNoResults">
                     <i class="fas fa-arrow-left"></i> Back to Search
                 </button>
             </div>
@@ -1535,76 +1345,62 @@
 
         <!-- Company Login/Register -->
         <div id="companyAuth" class="hidden">
-            <div class="card" style="max-width: 500px; margin: 0 auto;">
+            <div class="auth-container">
                 <div class="auth-tabs">
                     <button class="auth-tab active" id="loginTab">Login</button>
                     <button class="auth-tab" id="registerTab">Register</button>
                 </div>
 
                 <!-- Login Form -->
-                <div id="loginForm">
+                <div id="loginForm" class="card">
                     <h3 class="section-title">Restaurant Login</h3>
                     <form id="companyLoginForm">
                         <div class="form-group">
-                            <label class="form-label">
-                                <i class="fas fa-envelope"></i> Company Email
-                            </label>
+                            <label class="form-label">Company Email</label>
                             <input type="email" class="form-input" id="companyEmail" placeholder="Enter your company email" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">
-                                <i class="fas fa-lock"></i> Password
-                            </label>
+                            <label class="form-label">Password</label>
                             <input type="password" class="form-input" id="companyPassword" placeholder="Enter your password" required>
                         </div>
                         <button type="submit" class="auth-button">
                             <i class="fas fa-sign-in-alt"></i> Login to Dashboard
                         </button>
                     </form>
-                    <button class="back-button" id="backToSearchFromLogin">
+                    <button class="back-to-search" id="backToSearchFromLogin">
                         <i class="fas fa-arrow-left"></i> Back to Search
                     </button>
                 </div>
 
                 <!-- Register Form -->
-                <div id="registerForm" class="hidden">
+                <div id="registerForm" class="card hidden">
                     <h3 class="section-title">Register Your Restaurant</h3>
                     <form id="companyRegisterForm">
                         <div class="form-group">
-                            <label class="form-label">
-                                <i class="fas fa-building"></i> Company Name
-                            </label>
+                            <label class="form-label">Company Name</label>
                             <input type="text" class="form-input" id="regCompanyName" placeholder="Enter your company name" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">
-                                <i class="fas fa-envelope"></i> Company Email
-                            </label>
+                            <label class="form-label">Company Email</label>
                             <input type="email" class="form-input" id="regCompanyEmail" placeholder="Enter your company email" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">
-                                <i class="fas fa-phone"></i> Phone Number
-                            </label>
-                            <input type="tel" class="form-input" id="regPhone" placeholder="Enter your phone number" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">
-                                <i class="fas fa-lock"></i> Password
-                            </label>
+                            <label class="form-label">Password</label>
                             <input type="password" class="form-input" id="regPassword" placeholder="Create a password" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">
-                                <i class="fas fa-lock"></i> Confirm Password
-                            </label>
+                            <label class="form-label">Confirm Password</label>
                             <input type="password" class="form-input" id="regConfirmPassword" placeholder="Confirm your password" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Number of Restaurants</label>
+                            <input type="number" class="form-input" id="regRestaurantCount" placeholder="How many restaurants do you have?" min="1" required>
                         </div>
                         <button type="submit" class="auth-button">
                             <i class="fas fa-check-circle"></i> Register Company
                         </button>
                     </form>
-                    <button class="back-button" id="backToSearchFromRegister">
+                    <button class="back-to-search" id="backToSearchFromRegister">
                         <i class="fas fa-arrow-left"></i> Back to Search
                     </button>
                 </div>
@@ -1623,15 +1419,27 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="footer-brand">
-                        <div class="logo-icon">
-                            <i class="fas fa-shrimp"></i>
+                        <div class="footer-logo">
+                            <svg viewBox="0 0 100 100">
+                                <path d="M75,50 Q80,40 85,45 Q90,50 85,55 Q80,60 75,50" />
+                                <path d="M65,50 Q70,40 75,45 Q80,50 75,55 Q70,60 65,50" />
+                                <path d="M55,50 Q60,40 65,45 Q70,50 65,55 Q60,60 55,50" />
+                                <path d="M45,50 Q50,40 55,45 Q60,50 55,55 Q50,60 45,50" />
+                                <path d="M35,50 Q40,40 45,45 Q50,50 45,55 Q40,60 35,50" />
+                                <path d="M25,50 Q30,40 35,45 Q40,50 35,55 Q30,60 25,50" />
+                                <path d="M15,50 Q20,40 25,45 Q30,50 25,55 Q20,60 15,50" />
+                                <circle cx="80" cy="45" r="3" />
+                                <circle cx="80" cy="55" r="3" />
+                                <path d="M10,50 L5,50" stroke-width="3" stroke-linecap="round" />
+                                <path d="M85,50 L95,50" stroke-width="3" stroke-linecap="round" />
+                            </svg>
                         </div>
                         <div class="footer-brand-text">
                             <h3>Kati Check</h3>
-                            <p>Philippine Allergen Checker</p>
+                            <p>Philippine Allergen & Nutrition Checker</p>
                         </div>
                     </div>
-                    <p style="color: #bbb; font-size: 1rem; line-height: 1.7;">Helping Filipinos with food allergies dine safely across the Philippines.</p>
+                    <p style="color: #bbb; font-size: 0.95rem; line-height: 1.6;">Helping Filipinos with food allergies dine safely across the Philippines with nutritional information.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -1639,7 +1447,7 @@
                         <li><a href="#" id="footerHomeLink"><i class="fas fa-home"></i> Home</a></li>
                         <li><a href="#" id="footerCompanyLink"><i class="fas fa-store"></i> For Restaurants</a></li>
                         <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
-                        <li><a href="#"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -1648,62 +1456,16 @@
                         <li><a href="mailto:info@katicheck.ph"><i class="fas fa-envelope"></i> info@katicheck.ph</a></li>
                         <li><a href="tel:+63212345678"><i class="fas fa-phone"></i> (02) 1234-5678</a></li>
                         <li><a href="#"><i class="fas fa-map-marker-alt"></i> Manila, Philippines</a></li>
-                        <li><a href="#"><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM</a></li>
                     </ul>
                 </div>
             </div>
             <div class="powered-by">
-                <i class="fas fa-shield-alt"></i> Powered and secured by <strong>Kati Check Team</strong>
+                <i class="fas fa-shield-alt"></i> Powered and secured by <strong>RP8</strong>
             </div>
         </div>
     </footer>
 
     <!-- Modals -->
-    <div id="editRestaurantModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Edit Restaurant</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <form id="editRestaurantForm">
-                <input type="hidden" id="editRestaurantId">
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-store"></i> Restaurant Name</label>
-                    <input type="text" class="form-input" id="editRestaurantName" placeholder="Enter restaurant name" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-map-marker-alt"></i> Location</label>
-                    <input type="text" class="form-input" id="editRestaurantLocation" placeholder="Enter restaurant location" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-map-pin"></i> GPS Coordinates (Optional)</label>
-                    <input type="text" class="form-input" id="editRestaurantGPS" placeholder="e.g., 14.5995, 120.9842">
-                    <small style="color: var(--gray); display: block; margin-top: 5px;">Get coordinates from Google Maps</small>
-                </div>
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-utensils"></i> Restaurant Type</label>
-                    <select class="form-input" id="editRestaurantType" required>
-                        <option value="">Select type</option>
-                        <option value="Fast Food">Fast Food</option>
-                        <option value="Casual Dining">Casual Dining</option>
-                        <option value="Fine Dining">Fine Dining</option>
-                        <option value="Cafe">Cafe</option>
-                        <option value="Food Court">Food Court</option>
-                        <option value="Bakery">Bakery</option>
-                        <option value="Food Truck">Food Truck</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-align-left"></i> Description (Optional)</label>
-                    <textarea class="form-input" id="editRestaurantDescription" placeholder="Enter restaurant description" rows="3"></textarea>
-                </div>
-                <button type="submit" class="auth-button">
-                    <i class="fas fa-save"></i> Save Changes
-                </button>
-            </form>
-        </div>
-    </div>
-
     <div id="addRestaurantModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1712,20 +1474,15 @@
             </div>
             <form id="addRestaurantForm">
                 <div class="form-group">
-                    <label class="form-label"><i class="fas fa-store"></i> Restaurant Name</label>
+                    <label class="form-label">Restaurant Name</label>
                     <input type="text" class="form-input" id="restaurantName" placeholder="Enter restaurant name" required>
                 </div>
                 <div class="form-group">
-                    <label class="form-label"><i class="fas fa-map-marker-alt"></i> Location</label>
+                    <label class="form-label">Location</label>
                     <input type="text" class="form-input" id="restaurantLocation" placeholder="Enter restaurant location" required>
                 </div>
                 <div class="form-group">
-                    <label class="form-label"><i class="fas fa-map-pin"></i> GPS Coordinates (Optional)</label>
-                    <input type="text" class="form-input" id="restaurantGPS" placeholder="e.g., 14.5995, 120.9842">
-                    <small style="color: var(--gray); display: block; margin-top: 5px;">Get coordinates from Google Maps</small>
-                </div>
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-utensils"></i> Restaurant Type</label>
+                    <label class="form-label">Restaurant Type</label>
                     <select class="form-input" id="restaurantType" required>
                         <option value="">Select type</option>
                         <option value="Fast Food">Fast Food</option>
@@ -1733,12 +1490,10 @@
                         <option value="Fine Dining">Fine Dining</option>
                         <option value="Cafe">Cafe</option>
                         <option value="Food Court">Food Court</option>
-                        <option value="Bakery">Bakery</option>
-                        <option value="Food Truck">Food Truck</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-label"><i class="fas fa-align-left"></i> Description (Optional)</label>
+                    <label class="form-label">Description</label>
                     <textarea class="form-input" id="restaurantDescription" placeholder="Enter restaurant description" rows="3"></textarea>
                 </div>
                 <button type="submit" class="auth-button">
@@ -1748,110 +1503,7 @@
         </div>
     </div>
 
-    <div id="addMenuItemModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Add Menu Item</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <form id="addMenuItemForm">
-                <input type="hidden" id="menuRestaurantId">
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-utensils"></i> Food Name</label>
-                    <input type="text" class="form-input" id="menuItemName" placeholder="Enter food name" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-align-left"></i> Description</label>
-                    <textarea class="form-input" id="menuItemDescription" placeholder="Enter food description" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-peso-sign"></i> Price (PHP)</label>
-                    <input type="number" class="form-input" id="menuItemPrice" placeholder="Enter price in PHP" min="0" step="0.01" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-tag"></i> Category</label>
-                    <select class="form-input" id="menuItemCategory" required>
-                        <option value="">Select category</option>
-                        <option value="Appetizer">Appetizer</option>
-                        <option value="Main Course">Main Course</option>
-                        <option value="Side Dish">Side Dish</option>
-                        <option value="Dessert">Dessert</option>
-                        <option value="Beverage">Beverage</option>
-                        <option value="Breakfast">Breakfast</option>
-                        <option value="Lunch">Lunch</option>
-                        <option value="Dinner">Dinner</option>
-                        <option value="Snack">Snack</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-image"></i> Image URL (Optional)</label>
-                    <input type="text" class="form-input" id="menuItemImage" placeholder="https://example.com/image.jpg">
-                </div>
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-allergies"></i> Allergens</label>
-                    <div class="allergen-select-grid" id="allergenSelectionGrid">
-                        <!-- Allergen checkboxes will be populated by JavaScript -->
-                    </div>
-                </div>
-                <button type="submit" class="auth-button">
-                    <i class="fas fa-plus"></i> Add Menu Item
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <div id="editMenuItemModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Edit Menu Item</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <form id="editMenuItemForm">
-                <input type="hidden" id="editMenuItemId">
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-utensils"></i> Food Name</label>
-                    <input type="text" class="form-input" id="editMenuItemName" placeholder="Enter food name" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-align-left"></i> Description</label>
-                    <textarea class="form-input" id="editMenuItemDescription" placeholder="Enter food description" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-peso-sign"></i> Price (PHP)</label>
-                    <input type="number" class="form-input" id="editMenuItemPrice" placeholder="Enter price in PHP" min="0" step="0.01" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-tag"></i> Category</label>
-                    <select class="form-input" id="editMenuItemCategory" required>
-                        <option value="">Select category</option>
-                        <option value="Appetizer">Appetizer</option>
-                        <option value="Main Course">Main Course</option>
-                        <option value="Side Dish">Side Dish</option>
-                        <option value="Dessert">Dessert</option>
-                        <option value="Beverage">Beverage</option>
-                        <option value="Breakfast">Breakfast</option>
-                        <option value="Lunch">Lunch</option>
-                        <option value="Dinner">Dinner</option>
-                        <option value="Snack">Snack</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-image"></i> Image URL (Optional)</label>
-                    <input type="text" class="form-input" id="editMenuItemImage" placeholder="https://example.com/image.jpg">
-                </div>
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-allergies"></i> Allergens</label>
-                    <div class="allergen-select-grid" id="editAllergenSelectionGrid">
-                        <!-- Allergen checkboxes will be populated by JavaScript -->
-                    </div>
-                </div>
-                <button type="submit" class="auth-button">
-                    <i class="fas fa-save"></i> Save Changes
-                </button>
-            </form>
-        </div>
-    </div>
-
+    <!-- Nutrition Modal -->
     <div id="nutritionModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1860,339 +1512,263 @@
             </div>
             <form id="nutritionForm">
                 <input type="hidden" id="nutritionItemId">
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 25px;">
-                    <div>
-                        <label class="form-label"><i class="fas fa-fire"></i> Calories</label>
-                        <input type="number" class="form-input" id="nutritionCalories" placeholder="Calories" min="0" step="1" required>
-                    </div>
-                    <div>
-                        <label class="form-label"><i class="fas fa-dumbbell"></i> Protein (g)</label>
-                        <input type="number" class="form-input" id="nutritionProtein" placeholder="Protein" min="0" step="0.1" required>
-                    </div>
-                    <div>
-                        <label class="form-label"><i class="fas fa-bread-slice"></i> Carbs (g)</label>
-                        <input type="number" class="form-input" id="nutritionCarbs" placeholder="Carbohydrates" min="0" step="0.1" required>
-                    </div>
-                    <div>
-                        <label class="form-label"><i class="fas fa-candy-cane"></i> Sugar (g)</label>
-                        <input type="number" class="form-input" id="nutritionSugar" placeholder="Sugar" min="0" step="0.1" required>
-                    </div>
-                    <div>
-                        <label class="form-label"><i class="fas fa-bacon"></i> Total Fat (g)</label>
-                        <input type="number" class="form-input" id="nutritionFat" placeholder="Total Fat" min="0" step="0.1" required>
-                    </div>
-                    <div>
-                        <label class="form-label"><i class="fas fa-bacon"></i> Saturated Fat (g)</label>
-                        <input type="number" class="form-input" id="nutritionSaturatedFat" placeholder="Saturated Fat" min="0" step="0.1" required>
-                    </div>
-                    <div>
-                        <label class="form-label"><i class="fas fa-seedling"></i> Dietary Fiber (g)</label>
-                        <input type="number" class="form-input" id="nutritionFiber" placeholder="Dietary Fiber" min="0" step="0.1" required>
-                    </div>
-                    <div>
-                        <label class="form-label"><i class="fas fa-prescription-bottle"></i> Sodium (mg)</label>
-                        <input type="number" class="form-input" id="nutritionSodium" placeholder="Sodium" min="0" step="1" required>
-                    </div>
+                <div class="nutrition-input-group">
+                    <input type="number" class="nutrition-input" id="nutritionCalories" placeholder="Calories (kcal)" min="0" step="1">
+                    <input type="number" class="nutrition-input" id="nutritionProtein" placeholder="Protein (g)" min="0" step="0.1">
                 </div>
-                <button type="submit" class="auth-button">
-                    <i class="fas fa-save"></i> Save Nutritional Information
+                <div class="nutrition-input-group">
+                    <input type="number" class="nutrition-input" id="nutritionCarbs" placeholder="Carbohydrates (g)" min="0" step="0.1">
+                    <input type="number" class="nutrition-input" id="nutritionSugar" placeholder="Sugar (g)" min="0" step="0.1">
+                </div>
+                <div class="nutrition-input-group">
+                    <input type="number" class="nutrition-input" id="nutritionFat" placeholder="Total Fat (g)" min="0" step="0.1">
+                    <input type="number" class="nutrition-input" id="nutritionSaturatedFat" placeholder="Saturated Fat (g)" min="0" step="0.1">
+                </div>
+                <div class="nutrition-input-group">
+                    <input type="number" class="nutrition-input" id="nutritionFiber" placeholder="Dietary Fiber (g)" min="0" step="0.1">
+                    <input type="number" class="nutrition-input" id="nutritionSodium" placeholder="Sodium (mg)" min="0" step="1">
+                </div>
+                <button type="submit" class="auth-button" style="background: var(--nutrition);">
+                    <i class="fas fa-apple-alt"></i> Save Nutritional Information
                 </button>
             </form>
         </div>
     </div>
 
     <script>
-        // Complete Allergen List with International & Philippine Standards
+        // Application Data
         const allergens = [
-            { id: 1, name: "Gluten", icon: "fas fa-wheat", color: "var(--allergen-gluten)" },
-            { id: 2, name: "Shrimp", icon: "fas fa-shrimp", color: "var(--allergen-crustacean)" },
-            { id: 3, name: "Crab", icon: "fas fa-crab", color: "var(--allergen-crustacean)" },
-            { id: 4, name: "Lobster", icon: "fas fa-fish", color: "var(--allergen-crustacean)" },
-            { id: 5, name: "Eggs", icon: "fas fa-egg", color: "var(--allergen-egg)" },
-            { id: 6, name: "Fish", icon: "fas fa-fish", color: "var(--allergen-fish)" },
-            { id: 7, name: "Peanuts", icon: "fas fa-peanut", color: "var(--allergen-peanut)" },
-            { id: 8, name: "Soy", icon: "fas fa-seedling", color: "var(--allergen-soy)" },
-            { id: 9, name: "Milk", icon: "fas fa-wine-bottle", color: "var(--allergen-milk)" },
-            { id: 10, name: "Tree Nuts", icon: "fas fa-acorn", color: "var(--allergen-nuts)" },
-            { id: 11, name: "Celery", icon: "fas fa-carrot", color: "var(--allergen-celery)" },
-            { id: 12, name: "Mustard", icon: "fas fa-mortar-pestle", color: "var(--allergen-mustard)" },
-            { id: 13, name: "Sesame", icon: "fas fa-seedling", color: "var(--allergen-sesame)" },
-            { id: 14, name: "Sulfites", icon: "fas fa-flask", color: "var(--allergen-sulfite)" },
-            { id: 15, name: "Lupin", icon: "fas fa-leaf", color: "var(--allergen-lupin)" },
-            { id: 16, name: "Molluscs", icon: "fas fa-oyster", color: "var(--allergen-mollusc)" },
-            { id: 17, name: "Crustaceans", icon: "fas fa-shrimp", color: "var(--allergen-crustacean)" },
-            { id: 18, name: "Shellfish", icon: "fas fa-shrimp", color: "var(--allergen-crustacean)" },
-            { id: 19, name: "Wheat", icon: "fas fa-bread-slice", color: "var(--allergen-gluten)" },
-            { id: 20, name: "Barley", icon: "fas fa-seedling", color: "var(--allergen-gluten)" },
-            { id: 21, name: "Rye", icon: "fas fa-seedling", color: "var(--allergen-gluten)" },
-            { id: 22, name: "Oats", icon: "fas fa-seedling", color: "var(--allergen-gluten)" },
-            { id: 23, name: "MSG", icon: "fas fa-flask", color: "var(--allergen-sulfite)" },
-            { id: 24, name: "Peanut Oil", icon: "fas fa-oil-can", color: "var(--allergen-peanut)" },
-            { id: 25, name: "Soybean", icon: "fas fa-seedling", color: "var(--allergen-soy)" }
+            { id: 1, name: "Shrimp", icon: "fas fa-shrimp" },
+            { id: 2, name: "Peanuts", icon: "fas fa-peanut" },
+            { id: 3, name: "Tree Nuts", icon: "fas fa-acorn" },
+            { id: 4, name: "Milk", icon: "fas fa-wine-bottle" },
+            { id: 5, name: "Eggs", icon: "fas fa-egg" },
+            { id: 6, name: "Wheat", icon: "fas fa-bread-slice" },
+            { id: 7, name: "Soy", icon: "fas fa-seedling" },
+            { id: 8, name: "Fish", icon: "fas fa-fish" },
+            { id: 9, name: "Shellfish", icon: "fas fa-crab" },
+            { id: 10, name: "Sesame", icon: "fas fa-seedling" },
+            { id: 11, name: "Gluten", icon: "fas fa-wheat" },
+            { id: 12, name: "Sulfites", icon: "fas fa-flask" }
         ];
 
-        // REAL PHILIPPINE RESTAURANT DATA WITH ALLERGEN INFO
-        const initialRestaurants = [
-            {
-                id: 1,
-                name: "Chowking",
-                type: "Fast Food",
-                location: "Nationwide (Philippines)",
-                description: "Chinese-Filipino fast food chain offering dimsum, noodles, and rice meals",
-                gps: "14.5995, 120.9842",
-                hasAllergenInfo: true,
-                companyId: 1,
-                allergensAvailable: true
+        let restaurants = [
+            { id: 1, name: "Jollibee", companyId: 1, type: "Fast Food", location: "Nationwide" },
+            { id: 2, name: "McDonald's", companyId: 2, type: "Fast Food", location: "Nationwide" },
+            { id: 3, name: "Greenwich", companyId: 1, type: "Fast Food", location: "Nationwide" },
+            { id: 4, name: "Max's Restaurant", companyId: 3, type: "Casual Dining", location: "Major Cities" },
+            { id: 5, name: "Mang Inasal", companyId: 4, type: "Fast Food", location: "Nationwide" },
+            { id: 6, name: "Chowking", companyId: 1, type: "Fast Food", location: "Nationwide" },
+            { id: 7, name: "Goldilocks", companyId: 5, type: "Bakery", location: "Nationwide" },
+            { id: 8, name: "Kenny Rogers", companyId: 6, type: "Casual Dining", location: "Major Cities" }
+        ];
+
+        let menuItems = [
+            { 
+                id: 1, 
+                restaurantId: 1, 
+                name: "Chickenjoy", 
+                description: "Crispy fried chicken with rice", 
+                allergens: [2, 5, 6],
+                nutrition: {
+                    calories: 320,
+                    protein: 28,
+                    carbs: 15,
+                    sugar: 2,
+                    fat: 18,
+                    saturatedFat: 5,
+                    fiber: 1,
+                    sodium: 850
+                }
             },
-            {
-                id: 2,
-                name: "Jollibee",
-                type: "Fast Food",
-                location: "Nationwide (Philippines)",
-                description: "Philippines' largest fast food chain serving Filipino-style fried chicken, burgers, and spaghetti",
-                gps: "14.6042, 120.9822",
-                hasAllergenInfo: true,
-                companyId: 2,
-                allergensAvailable: true
+            { 
+                id: 2, 
+                restaurantId: 1, 
+                name: "Jolly Spaghetti", 
+                description: "Sweet style spaghetti with hotdog and cheese", 
+                allergens: [5, 7],
+                nutrition: {
+                    calories: 420,
+                    protein: 12,
+                    carbs: 68,
+                    sugar: 22,
+                    fat: 14,
+                    saturatedFat: 4,
+                    fiber: 3,
+                    sodium: 780
+                }
             },
-            {
-                id: 3,
-                name: "The Wholesome Table",
-                type: "Casual Dining",
-                location: "Makati, BGC, Rockwell",
-                description: "Organic restaurant with allergen-marked menu and gluten-free options",
-                gps: "14.5547, 121.0244",
-                hasAllergenInfo: true,
-                companyId: 3,
-                allergensAvailable: true
+            { 
+                id: 3, 
+                restaurantId: 1, 
+                name: "Shrimp Burger", 
+                description: "Burger with shrimp patty and special sauce", 
+                allergens: [1, 5, 6],
+                nutrition: {
+                    calories: 380,
+                    protein: 18,
+                    carbs: 45,
+                    sugar: 8,
+                    fat: 16,
+                    saturatedFat: 3,
+                    fiber: 2,
+                    sodium: 920
+                }
             },
-            {
-                id: 4,
-                name: "Corner Tree Cafe",
-                type: "Cafe",
-                location: "Jupiter, Makati",
-                description: "Vegetarian restaurant with allergen-marked menu including Filipino dishes",
-                gps: "14.5578, 121.0164",
-                hasAllergenInfo: true,
-                companyId: 4,
-                allergensAvailable: true
+            { 
+                id: 4, 
+                restaurantId: 2, 
+                name: "Big Mac", 
+                description: "Double beef burger with special sauce", 
+                allergens: [5, 6, 7],
+                nutrition: {
+                    calories: 540,
+                    protein: 25,
+                    carbs: 46,
+                    sugar: 9,
+                    fat: 29,
+                    saturatedFat: 10,
+                    fiber: 3,
+                    sodium: 1010
+                }
             },
-            {
-                id: 5,
-                name: "Purple Patch",
-                type: "Casual Dining",
-                location: "Washington, D.C. (USA)",
-                description: "Filipino restaurant that is completely nut and seed-free",
-                gps: "38.9215, -77.0423",
-                hasAllergenInfo: true,
-                companyId: 5,
-                allergensAvailable: true
+            { 
+                id: 5, 
+                restaurantId: 2, 
+                name: "Filet-O-Fish", 
+                description: "Fish fillet burger with tartar sauce", 
+                allergens: [5, 6, 8],
+                nutrition: {
+                    calories: 390,
+                    protein: 16,
+                    carbs: 39,
+                    sugar: 5,
+                    fat: 19,
+                    saturatedFat: 4,
+                    fiber: 2,
+                    sodium: 640
+                }
             },
-            {
-                id: 6,
-                name: "Top of Cebu",
-                type: "Fine Dining",
-                location: "Cebu City, Philippines",
-                description: "Restaurant on mountain top with chef knowledgeable about food allergies",
-                gps: "10.3157, 123.8854",
-                hasAllergenInfo: true,
-                companyId: 6,
-                allergensAvailable: true
+            { 
+                id: 6, 
+                restaurantId: 3, 
+                name: "Hawaiian Pizza", 
+                description: "Pizza with ham, pineapple, and cheese", 
+                allergens: [4, 5, 6],
+                nutrition: {
+                    calories: 280,
+                    protein: 12,
+                    carbs: 36,
+                    sugar: 8,
+                    fat: 10,
+                    saturatedFat: 4,
+                    fiber: 2,
+                    sodium: 720
+                }
             },
-            {
-                id: 7,
-                name: "Mang Inasal",
-                type: "Fast Food",
-                location: "Nationwide (Philippines)",
-                description: "Grilled chicken fast food chain, generally safe for gluten-free diets",
-                gps: "14.6091, 121.0223",
-                hasAllergenInfo: false,
-                companyId: 7,
-                allergensAvailable: false
+            { 
+                id: 7, 
+                restaurantId: 4, 
+                name: "Fried Chicken", 
+                description: "Classic Max's fried chicken with rice", 
+                allergens: [2, 5, 6],
+                nutrition: {
+                    calories: 450,
+                    protein: 35,
+                    carbs: 28,
+                    sugar: 3,
+                    fat: 22,
+                    saturatedFat: 6,
+                    fiber: 2,
+                    sodium: 980
+                }
             },
-            {
-                id: 8,
-                name: "Bacolod Chicken Inasal",
-                type: "Fast Food",
-                location: "Nationwide (Philippines)",
-                description: "Specializes in grilled chicken with vinegar-oil marinade (gluten-free)",
-                gps: "14.5542, 121.0241",
-                hasAllergenInfo: false,
-                companyId: 8,
-                allergensAvailable: false
+            { 
+                id: 8, 
+                restaurantId: 5, 
+                name: "Chicken Inasal", 
+                description: "Grilled chicken with rice and special sauce", 
+                allergens: [2, 5],
+                nutrition: {
+                    calories: 380,
+                    protein: 32,
+                    carbs: 42,
+                    sugar: 4,
+                    fat: 12,
+                    saturatedFat: 3,
+                    fiber: 2,
+                    sodium: 890
+                }
+            },
+            { 
+                id: 9, 
+                restaurantId: 6, 
+                name: "Chicken Lauriat", 
+                description: "Chicken meal with rice, vegetables, and soup", 
+                allergens: [2, 5, 7],
+                nutrition: {
+                    calories: 520,
+                    protein: 26,
+                    carbs: 58,
+                    sugar: 6,
+                    fat: 21,
+                    saturatedFat: 5,
+                    fiber: 4,
+                    sodium: 1120
+                }
+            },
+            { 
+                id: 10, 
+                restaurantId: 7, 
+                name: "Mocha Cake", 
+                description: "Classic mocha flavored cake slice", 
+                allergens: [4, 5, 6],
+                nutrition: {
+                    calories: 320,
+                    protein: 4,
+                    carbs: 45,
+                    sugar: 32,
+                    fat: 14,
+                    saturatedFat: 8,
+                    fiber: 1,
+                    sodium: 240
+                }
+            },
+            { 
+                id: 11, 
+                restaurantId: 8, 
+                name: "Roast Chicken", 
+                description: "Healthy roast chicken with vegetables", 
+                allergens: [2, 5],
+                nutrition: {
+                    calories: 280,
+                    protein: 38,
+                    carbs: 12,
+                    sugar: 4,
+                    fat: 9,
+                    saturatedFat: 2,
+                    fiber: 3,
+                    sodium: 760
+                }
             }
         ];
 
-        // REAL MENU ITEMS WITH ALLERGEN DATA ONLY (NO NUTRITION)
-        const initialMenuItems = [
-            // Chowking Menu Items
-            {
-                id: 1,
-                restaurantId: 1,
-                name: "Pork Siomai",
-                description: "Steamed pork dumplings served with soy sauce",
-                price: 85.00,
-                category: "Dimsum",
-                allergens: [1, 5, 8, 9, 14] // Gluten, Egg, Soy, Milk, Sulfites
-            },
-            {
-                id: 2,
-                restaurantId: 1,
-                name: "Beef Chao Fan",
-                description: "Chinese-style fried rice with beef and vegetables",
-                price: 145.00,
-                category: "Main Course",
-                allergens: [1, 5, 8, 11] // Gluten, Egg, Soy, Celery
-            },
-            {
-                id: 3,
-                restaurantId: 1,
-                name: "Halo-Halo Supreme",
-                description: "Traditional Filipino shaved ice dessert with fruits, beans, and leche flan",
-                price: 125.00,
-                category: "Dessert",
-                allergens: [1, 5, 9, 13] // Gluten, Egg, Milk, Sesame
-            },
-            {
-                id: 4,
-                restaurantId: 1,
-                name: "Sweet & Sour Pork",
-                description: "Crispy pork in sweet and sour sauce with vegetables",
-                price: 165.00,
-                category: "Main Course",
-                allergens: [1, 8, 14] // Gluten, Soy, Sulfites
-            },
-            {
-                id: 5,
-                restaurantId: 1,
-                name: "Pancit Canton",
-                description: "Stir-fried noodles with vegetables and meat",
-                price: 135.00,
-                category: "Noodles",
-                allergens: [1, 5, 8, 11] // Gluten, Egg, Soy, Celery
-            },
-            // Jollibee Menu Items
-            {
-                id: 6,
-                restaurantId: 2,
-                name: "Chickenjoy (1pc)",
-                description: "Classic Filipino-style crispy fried chicken",
-                price: 99.00,
-                category: "Main Course",
-                allergens: [1, 5, 9] // Gluten, Egg, Milk
-            },
-            {
-                id: 7,
-                restaurantId: 2,
-                name: "Jolly Spaghetti",
-                description: "Sweet-style spaghetti with hotdog and cheese",
-                price: 85.00,
-                category: "Main Course",
-                allergens: [1, 5, 9] // Gluten, Egg, Milk
-            },
-            {
-                id: 8,
-                restaurantId: 2,
-                name: "Peach Mango Pie",
-                description: "Fried pie with peach and mango filling",
-                price: 45.00,
-                category: "Dessert",
-                allergens: [1] // Gluten only
-            },
-            {
-                id: 9,
-                restaurantId: 2,
-                name: "Burger Steak",
-                description: "Beef patty with mushroom gravy and rice",
-                price: 75.00,
-                category: "Main Course",
-                allergens: [1, 5, 8, 9] // Gluten, Egg, Soy, Milk
-            },
-            // The Wholesome Table (gluten-free options)
-            {
-                id: 10,
-                restaurantId: 3,
-                name: "Gluten-Free Pancit",
-                description: "Rice noodles stir-fried with vegetables and choice of protein",
-                price: 395.00,
-                category: "Main Course",
-                allergens: [8] // Soy only (from sauce)
-            },
-            {
-                id: 11,
-                restaurantId: 3,
-                name: "Organic Chicken Adobo",
-                description: "Traditional Filipino chicken stew made gluten-free",
-                price: 425.00,
-                category: "Main Course",
-                allergens: [8] // Soy only (from coconut aminos)
-            },
-            // Purple Patch (nut-free restaurant)
-            {
-                id: 12,
-                restaurantId: 5,
-                name: "Nut-Free Kare-Kare",
-                description: "Traditional Filipino oxtail stew made without peanuts",
-                price: 550.00,
-                category: "Main Course",
-                allergens: [1, 2, 5, 8, 9] // Gluten, Shrimp, Egg, Soy, Milk
-            },
-            // Mang Inasal
-            {
-                id: 13,
-                restaurantId: 7,
-                name: "Chicken Inasal",
-                description: "Grilled chicken marinated in vinegar, calamansi, and spices",
-                price: 125.00,
-                category: "Main Course",
-                allergens: [] // Generally gluten-free based on marinade
-            },
-            // Bacolod Chicken Inasal
-            {
-                id: 14,
-                restaurantId: 8,
-                name: "Grilled Chicken Inasal",
-                description: "Special grilled chicken with vinegar-oil marinade",
-                price: 145.00,
-                category: "Main Course",
-                allergens: [] // Gluten-free marinade
-            }
-        ];
-
-        // Application Data - Updated with real data
-        let restaurants = initialRestaurants;
-        let menuItems = initialMenuItems;
         let companies = [
-            {
-                id: 1,
-                name: "Jollibee Foods Corporation",
-                email: "corporate@jollibee.com.ph",
-                phone: "+632-888-7000",
-                password: "demo123",
-                restaurants: [2]
-            },
-            {
-                id: 2,
-                name: "Chowking Food Corporation",
-                email: "info@chowking.ph",
-                phone: "+632-898-2000",
-                password: "demo123",
-                restaurants: [1]
-            },
-            {
-                id: 3,
-                name: "The Wholesome Table",
-                email: "contact@wholesometable.ph",
-                phone: "+632-884-9999",
-                password: "demo123",
-                restaurants: [3]
-            }
+            { id: 1, name: "Jollibee Foods Corporation", email: "jfc@jollibee.com", password: "password123", restaurants: [1, 3, 6] },
+            { id: 2, name: "McDonald's Philippines", email: "admin@mcdonalds.ph", password: "password123", restaurants: [2] }
         ];
 
         // Application State
         let currentCompany = null;
         let selectedAllergens = new Set();
         let selectedRestaurants = new Set();
+        let isSearching = false;
+        let nutritionFilters = {
+            maxCalories: 2000,
+            minProtein: 0,
+            maxCarbs: 200,
+            maxSugar: 100
+        };
 
         // DOM Elements
         const userInterface = document.getElementById('userInterface');
@@ -2222,130 +1798,40 @@
         const selectAllRestaurants = document.getElementById('selectAllRestaurants');
         const clearAllRestaurants = document.getElementById('clearAllRestaurants');
         const addRestaurantModal = document.getElementById('addRestaurantModal');
-        const editRestaurantModal = document.getElementById('editRestaurantModal');
-        const addMenuItemModal = document.getElementById('addMenuItemModal');
-        const editMenuItemModal = document.getElementById('editMenuItemModal');
         const nutritionModal = document.getElementById('nutritionModal');
-        const toast = document.getElementById('toast');
         const closeModalBtns = document.querySelectorAll('.close-modal');
-        const addRestaurantForm = document.getElementById('addRestaurantForm');
-        const editRestaurantForm = document.getElementById('editRestaurantForm');
-        const addMenuItemForm = document.getElementById('addMenuItemForm');
-        const editMenuItemForm = document.getElementById('editMenuItemForm');
+        const nutritionFilterToggle = document.getElementById('nutritionFilterToggle');
+        const nutritionFilterContent = document.getElementById('nutritionFilterContent');
+        const calorieRange = document.getElementById('calorieRange');
+        const proteinRange = document.getElementById('proteinRange');
+        const carbRange = document.getElementById('carbRange');
+        const sugarRange = document.getElementById('sugarRange');
+        const calorieValue = document.getElementById('calorieValue');
+        const proteinValue = document.getElementById('proteinValue');
+        const carbValue = document.getElementById('carbValue');
+        const sugarValue = document.getElementById('sugarValue');
+        const resetNutritionFilters = document.getElementById('resetNutritionFilters');
         const nutritionForm = document.getElementById('nutritionForm');
 
         // Initialize Application
         function initApp() {
-            // Load saved data from localStorage
-            loadSavedData();
-            
+            // Load saved state
+            const savedCompany = localStorage.getItem('katiCheckCompany');
+            if (savedCompany) {
+                currentCompany = JSON.parse(savedCompany);
+            }
+
             // Populate allergens
             populateAllergens();
-            populateAllergenSelectionGrid();
-            populateEditAllergenSelectionGrid();
 
             // Populate restaurants
             populateRestaurants();
 
             // Set up event listeners
             setupEventListeners();
-            
-            // Show demo restaurant info
-            showDemoInfo();
-        }
 
-        // Show demo information
-        function showDemoInfo() {
-            console.log("Kati Check Demo - Philippine Restaurant Allergen Checker");
-            console.log("Loaded with real data from:");
-            console.log("- Chowking (actual allergen declaration)");
-            console.log("- Jollibee (allergen info)");
-            console.log("- Philippine restaurants with allergen awareness");
-        }
-
-        // Load saved data from localStorage
-        function loadSavedData() {
-            // Load companies
-            const savedCompanies = localStorage.getItem('katiCheckCompanies');
-            if (savedCompanies) {
-                try {
-                    companies = JSON.parse(savedCompanies);
-                } catch (e) {
-                    console.error('Error loading companies:', e);
-                    companies = initialRestaurants;
-                }
-            }
-
-            // Load restaurants
-            const savedRestaurants = localStorage.getItem('katiCheckRestaurants');
-            if (savedRestaurants) {
-                try {
-                    restaurants = JSON.parse(savedRestaurants);
-                } catch (e) {
-                    console.error('Error loading restaurants:', e);
-                    restaurants = initialRestaurants;
-                }
-            }
-
-            // Load menu items
-            const savedMenuItems = localStorage.getItem('katiCheckMenuItems');
-            if (savedMenuItems) {
-                try {
-                    menuItems = JSON.parse(savedMenuItems);
-                } catch (e) {
-                    console.error('Error loading menu items:', e);
-                    menuItems = initialMenuItems;
-                }
-            }
-
-            // Load current company
-            const savedCompany = localStorage.getItem('katiCheckCompany');
-            if (savedCompany) {
-                try {
-                    currentCompany = JSON.parse(savedCompany);
-                    showCompanyDashboard();
-                } catch (e) {
-                    console.error('Error loading saved company:', e);
-                    localStorage.removeItem('katiCheckCompany');
-                }
-            }
-        }
-
-        // Save data to localStorage
-        function saveData() {
-            localStorage.setItem('katiCheckCompanies', JSON.stringify(companies));
-            localStorage.setItem('katiCheckRestaurants', JSON.stringify(restaurants));
-            localStorage.setItem('katiCheckMenuItems', JSON.stringify(menuItems));
-            if (currentCompany) {
-                localStorage.setItem('katiCheckCompany', JSON.stringify(currentCompany));
-            }
-        }
-
-        // Show toast notification
-        function showToast(message, type = 'success') {
-            const toastMessage = document.getElementById('toastMessage');
-            const toastIcon = toast.querySelector('i');
-            
-            toastMessage.textContent = message;
-            toast.className = `toast ${type}`;
-            
-            switch(type) {
-                case 'success':
-                    toastIcon.className = 'fas fa-check-circle';
-                    break;
-                case 'error':
-                    toastIcon.className = 'fas fa-exclamation-circle';
-                    break;
-                case 'warning':
-                    toastIcon.className = 'fas fa-exclamation-triangle';
-                    break;
-            }
-            
-            toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+            // Update nutrition filter displays
+            updateNutritionFilterDisplays();
         }
 
         // Populate allergens grid
@@ -2355,12 +1841,12 @@
                 const allergenItem = document.createElement('div');
                 allergenItem.className = 'allergen-item';
                 allergenItem.dataset.id = allergen.id;
-                allergenItem.dataset.name = allergen.name;
                 allergenItem.innerHTML = `
-                    <div class="allergen-icon" style="color: ${allergen.color};">
+                    <div class="allergen-icon">
                         <i class="${allergen.icon}"></i>
                     </div>
                     <div class="allergen-name">${allergen.name}</div>
+                    <input type="checkbox" class="allergen-checkbox" id="allergen-${allergen.id}" value="${allergen.id}">
                 `;
                 allergenGrid.appendChild(allergenItem);
 
@@ -2371,81 +1857,6 @@
             });
         }
 
-        // Populate allergen selection grid for menu item form
-        function populateAllergenSelectionGrid() {
-            const grid = document.getElementById('allergenSelectionGrid');
-            if (!grid) return;
-            
-            grid.innerHTML = '';
-            allergens.forEach(allergen => {
-                const item = document.createElement('div');
-                item.className = 'allergen-select-item';
-                item.dataset.id = allergen.id;
-                item.innerHTML = `
-                    <div class="allergen-select-icon" style="color: ${allergen.color};">
-                        <i class="${allergen.icon}"></i>
-                    </div>
-                    <div class="allergen-select-name">${allergen.name}</div>
-                `;
-                
-                item.addEventListener('click', () => {
-                    item.classList.toggle('selected');
-                });
-                
-                grid.appendChild(item);
-            });
-        }
-
-        // Populate edit allergen selection grid
-        function populateEditAllergenSelectionGrid() {
-            const grid = document.getElementById('editAllergenSelectionGrid');
-            if (!grid) return;
-            
-            grid.innerHTML = '';
-            allergens.forEach(allergen => {
-                const item = document.createElement('div');
-                item.className = 'allergen-select-item';
-                item.dataset.id = allergen.id;
-                item.innerHTML = `
-                    <div class="allergen-select-icon" style="color: ${allergen.color};">
-                        <i class="${allergen.icon}"></i>
-                    </div>
-                    <div class="allergen-select-name">${allergen.name}</div>
-                `;
-                
-                item.addEventListener('click', () => {
-                    item.classList.toggle('selected');
-                });
-                
-                grid.appendChild(item);
-            });
-        }
-
-        // Get selected allergens from grid
-        function getSelectedAllergensFromGrid(gridId) {
-            const grid = document.getElementById(gridId);
-            if (!grid) return [];
-            
-            const selectedItems = grid.querySelectorAll('.allergen-select-item.selected');
-            return Array.from(selectedItems).map(item => parseInt(item.dataset.id));
-        }
-
-        // Set selected allergens in grid
-        function setSelectedAllergensInGrid(gridId, allergenIds) {
-            const grid = document.getElementById(gridId);
-            if (!grid) return;
-            
-            const items = grid.querySelectorAll('.allergen-select-item');
-            items.forEach(item => {
-                const id = parseInt(item.dataset.id);
-                if (allergenIds.includes(id)) {
-                    item.classList.add('selected');
-                } else {
-                    item.classList.remove('selected');
-                }
-            });
-        }
-
         // Populate restaurants grid
         function populateRestaurants() {
             restaurantGrid.innerHTML = '';
@@ -2453,17 +1864,12 @@
                 const restaurantItem = document.createElement('div');
                 restaurantItem.className = 'restaurant-item';
                 restaurantItem.dataset.id = restaurant.id;
-                
-                // Add info badge for restaurants with allergen data
-                const infoBadge = restaurant.hasAllergenInfo ? 
-                    '<span style="position: absolute; top: 5px; right: 5px; background: var(--primary); color: white; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem;"><i class="fas fa-check"></i></span>' : '';
-                
                 restaurantItem.innerHTML = `
                     <div class="restaurant-icon">
                         <i class="fas fa-store"></i>
                     </div>
                     <div class="restaurant-name">${restaurant.name}</div>
-                    ${infoBadge}
+                    <input type="checkbox" class="restaurant-checkbox" id="restaurant-${restaurant.id}" value="${restaurant.id}">
                 `;
                 restaurantGrid.appendChild(restaurantItem);
 
@@ -2471,54 +1877,64 @@
                 restaurantItem.addEventListener('click', () => {
                     toggleRestaurantSelection(restaurant.id, restaurantItem);
                 });
-                
-                // Add tooltip for restaurants with allergen info
-                if (restaurant.hasAllergenInfo) {
-                    restaurantItem.title = "This restaurant has publicly available allergen information";
-                }
             });
         }
 
         // Toggle allergen selection
         function toggleAllergenSelection(allergenId, element) {
+            const checkbox = element.querySelector('.allergen-checkbox');
             if (selectedAllergens.has(allergenId)) {
                 selectedAllergens.delete(allergenId);
                 element.classList.remove('selected');
+                checkbox.checked = false;
             } else {
                 selectedAllergens.add(allergenId);
                 element.classList.add('selected');
+                checkbox.checked = true;
             }
         }
 
         // Toggle restaurant selection
         function toggleRestaurantSelection(restaurantId, element) {
+            const checkbox = element.querySelector('.restaurant-checkbox');
             if (selectedRestaurants.has(restaurantId)) {
                 selectedRestaurants.delete(restaurantId);
                 element.classList.remove('selected');
+                checkbox.checked = false;
             } else {
                 selectedRestaurants.add(restaurantId);
                 element.classList.add('selected');
+                checkbox.checked = true;
             }
         }
 
-        // Perform search - SIMPLIFIED VERSION (NO NUTRITION FILTERS)
-        function performSearch() {
-            console.log("=== DEBUG: Starting Search ===");
-            console.log("Selected Allergens:", Array.from(selectedAllergens));
-            console.log("Selected Restaurants:", Array.from(selectedRestaurants));
-            console.log("Total Menu Items:", menuItems.length);
+        // Update nutrition filter displays
+        function updateNutritionFilterDisplays() {
+            calorieValue.textContent = `${calorieRange.value} kcal`;
+            proteinValue.textContent = `${proteinRange.value}g`;
+            carbValue.textContent = `${carbRange.value}g`;
+            sugarValue.textContent = `${sugarRange.value}g`;
             
+            nutritionFilters.maxCalories = parseInt(calorieRange.value);
+            nutritionFilters.minProtein = parseInt(proteinRange.value);
+            nutritionFilters.maxCarbs = parseInt(carbRange.value);
+            nutritionFilters.maxSugar = parseInt(sugarRange.value);
+        }
+
+        // Perform search with nutrition filtering
+        function performSearch() {
             if (selectedAllergens.size === 0) {
-                showToast('Please select at least one allergen to search for.', 'warning');
+                alert('Please select at least one allergen to search for.');
                 return;
             }
 
             if (selectedRestaurants.size === 0) {
-                showToast('Please select at least one restaurant to search in.', 'warning');
+                alert('Please select at least one restaurant to search in.');
                 return;
             }
 
-            userInterface.style.display = 'none';
+            isSearching = true;
+            userInterface.querySelector('.search-intro').style.display = 'none';
             searchResultsContainer.classList.remove('hidden');
             searchResults.innerHTML = '<div class="spinner"></div>';
 
@@ -2526,32 +1942,29 @@
             setTimeout(() => {
                 const filteredItems = menuItems.filter(item => {
                     // Filter by restaurant
-                    if (!selectedRestaurants.has(item.restaurantId)) {
-                        console.log(`❌ ${item.name} excluded: Not in selected restaurant`);
-                        return false;
-                    }
+                    if (!selectedRestaurants.has(item.restaurantId)) return false;
                     
-                    // Filter by allergens - Show items that DON'T contain selected allergens
-                    const hasSelectedAllergen = item.allergens && item.allergens.some(allergenId => 
+                    // Filter by allergens
+                    const hasAllergen = item.allergens.some(allergenId => 
                         selectedAllergens.has(allergenId)
                     );
                     
-                    // If item has ANY of the selected allergens, exclude it
-                    if (hasSelectedAllergen) {
-                        console.log(`❌ ${item.name} excluded: Contains selected allergens`);
-                        return false;
+                    // Filter by nutrition if item has nutrition data
+                    if (item.nutrition) {
+                        if (item.nutrition.calories > nutritionFilters.maxCalories) return false;
+                        if (item.nutrition.protein < nutritionFilters.minProtein) return false;
+                        if (item.nutrition.carbs > nutritionFilters.maxCarbs) return false;
+                        if (item.nutrition.sugar > nutritionFilters.maxSugar) return false;
                     }
                     
-                    console.log(`✅ ${item.name} included: Safe item`);
-                    return true; // Item is safe (doesn't contain selected allergens)
+                    return hasAllergen;
                 });
 
-                console.log("Filtered Items Found:", filteredItems.length);
                 displaySearchResults(filteredItems);
             }, 500);
         }
 
-        // Display search results - SIMPLIFIED VERSION (NO NUTRITION DATA)
+        // Display search results with nutritional information
         function displaySearchResults(items) {
             searchResults.innerHTML = '';
             
@@ -2565,52 +1978,90 @@
             
             items.forEach(item => {
                 const restaurant = restaurants.find(r => r.id === item.restaurantId);
-                const otherAllergens = item.allergens ? item.allergens.filter(id => !selectedAllergens.has(id)) : [];
+                const matchingAllergens = item.allergens.filter(id => selectedAllergens.has(id));
+                const otherAllergens = item.allergens.filter(id => !selectedAllergens.has(id));
                 
                 // Determine safety level
-                let safetyClass = 'safe';
-                let safetyText = 'Safe';
+                let safetyClass = 'unsafe';
+                let safetyText = 'Contains allergens';
                 
-                // Check if item has other allergens not selected by user
-                if (otherAllergens.length > 0) {
+                if (matchingAllergens.length === 0) {
+                    safetyClass = 'safe';
+                    safetyText = 'Safe';
+                } else if (matchingAllergens.length < item.allergens.length) {
                     safetyClass = 'may-contain';
-                    safetyText = 'May contain other allergens';
+                    safetyText = 'May contain allergens';
                 }
 
                 const resultItem = document.createElement('div');
                 resultItem.className = `result-item ${safetyClass}`;
-
                 resultItem.innerHTML = `
                     <div class="result-header">
                         <div>
-                            <div class="food-name">${item.name} <span style="color: var(--primary); font-size: 1.3rem;">₱${item.price.toFixed(2)}</span></div>
+                            <div class="food-name">${item.name}</div>
                             <div class="restaurant-info">
                                 <i class="fas fa-store"></i>
-                                <span>${restaurant?.name || 'Unknown'} • ${restaurant?.location || 'Unknown'}</span>
-                                <span style="background: var(--light); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem;">
-                                    <i class="fas fa-tag"></i> ${item.category}
-                                </span>
+                                <span>${restaurant.name} • ${restaurant.location}</span>
                             </div>
                         </div>
-                        <div style="background: ${safetyClass === 'safe' ? 'var(--safe)' : safetyClass === 'warning' ? 'var(--warning)' : 'var(--danger)'}; color: white; padding: 10px 20px; border-radius: 25px; font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
-                            ${safetyText}
-                        </div>
+                        <div class="safety-badge ${safetyClass}">${safetyText}</div>
                     </div>
                     <div class="food-description">${item.description}</div>
-                    ${otherAllergens.length > 0 ? `
+                    ${matchingAllergens.length > 0 ? `
                         <div class="allergen-tags">
-                            <strong style="font-size: 1rem; color: var(--dark); margin-bottom: 10px; display: block;">⚠️ Contains Other Allergens:</strong>
-                            ${otherAllergens.map(id => {
+                            <strong style="font-size: 0.9rem; color: var(--dark);">Contains:</strong>
+                            ${matchingAllergens.map(id => {
                                 const allergen = allergens.find(a => a.id === id);
-                                return `<span class="allergen-tag may-contain"><i class="${allergen?.icon || 'fas fa-exclamation-triangle'}" style="color: ${allergen?.color || 'var(--warning)'};"></i> ${allergen?.name || 'Unknown Allergen'}</span>`;
+                                return `<span class="allergen-tag contains"><i class="${allergen.icon}"></i> ${allergen.name}</span>`;
                             }).join('')}
+                            ${otherAllergens.length > 0 ? otherAllergens.map(id => {
+                                const allergen = allergens.find(a => a.id === id);
+                                return `<span class="allergen-tag may-contain"><i class="${allergen.icon}"></i> ${allergen.name}</span>`;
+                            }).join('') : ''}
                         </div>
-                    ` : `
-                        <div class="allergen-tags">
-                            <span class="allergen-tag safe"><i class="fas fa-check-circle"></i> No allergens detected</span>
-                        </div>
-                    `}
+                    ` : ''}
                 `;
+
+                // Add nutritional information if available
+                if (item.nutrition) {
+                    const nutritionHTML = `
+                        <div class="nutrition-section">
+                            <div class="nutrition-title">
+                                <i class="fas fa-apple-alt"></i> Nutritional Information (per serving)
+                            </div>
+                            <div class="nutrition-grid">
+                                <div class="nutrition-item">
+                                    <div class="nutrition-value">${item.nutrition.calories}<span class="nutrition-unit">kcal</span></div>
+                                    <div class="nutrition-label">Calories</div>
+                                </div>
+                                <div class="nutrition-item">
+                                    <div class="nutrition-value">${item.nutrition.protein}<span class="nutrition-unit">g</span></div>
+                                    <div class="nutrition-label">Protein</div>
+                                </div>
+                                <div class="nutrition-item">
+                                    <div class="nutrition-value">${item.nutrition.carbs}<span class="nutrition-unit">g</span></div>
+                                    <div class="nutrition-label">Carbs</div>
+                                </div>
+                                <div class="nutrition-item">
+                                    <div class="nutrition-value">${item.nutrition.sugar}<span class="nutrition-unit">g</span></div>
+                                    <div class="nutrition-label">Sugar</div>
+                                </div>
+                                <div class="nutrition-item">
+                                    <div class="nutrition-value">${item.nutrition.fat}<span class="nutrition-unit">g</span></div>
+                                    <div class="nutrition-label">Fat</div>
+                                </div>
+                                <div class="nutrition-item">
+                                    <div class="nutrition-value">${item.nutrition.fiber}<span class="nutrition-unit">g</span></div>
+                                    <div class="nutrition-label">Fiber</div>
+                                </div>
+                            </div>
+                            <div class="daily-value">
+                                *Based on a 2000 calorie diet
+                            </div>
+                        </div>
+                    `;
+                    resultItem.innerHTML += nutritionHTML;
+                }
 
                 searchResults.appendChild(resultItem);
             });
@@ -2618,51 +2069,55 @@
 
         // Clear search
         function clearSearchResults() {
+            isSearching = false;
+            searchResultsContainer.classList.add('hidden');
+            noResults.classList.add('hidden');
+            userInterface.querySelector('.search-intro').style.display = 'block';
             selectedAllergens.clear();
             selectedRestaurants.clear();
             
             // Reset UI
             document.querySelectorAll('.allergen-item').forEach(item => {
                 item.classList.remove('selected');
+                item.querySelector('.allergen-checkbox').checked = false;
             });
             
             document.querySelectorAll('.restaurant-item').forEach(item => {
                 item.classList.remove('selected');
+                item.querySelector('.restaurant-checkbox').checked = false;
             });
-            
-            searchResultsContainer.classList.add('hidden');
-            noResults.classList.add('hidden');
-            userInterface.style.display = 'block';
         }
 
         // Show company authentication
         function showCompanyAuth() {
-            userInterface.style.display = 'none';
+            userInterface.classList.add('hidden');
             companyAuth.classList.remove('hidden');
             companyDashboard.classList.add('hidden');
         }
 
         // Show user interface
         function showUserInterface() {
-            userInterface.style.display = 'block';
+            userInterface.classList.remove('hidden');
             companyAuth.classList.add('hidden');
             companyDashboard.classList.add('hidden');
+            
+            if (isSearching) {
+                userInterface.querySelector('.search-intro').style.display = 'none';
+                searchResultsContainer.classList.remove('hidden');
+            } else {
+                userInterface.querySelector('.search-intro').style.display = 'block';
+            }
         }
 
         // Show company dashboard
         function showCompanyDashboard() {
-            if (!currentCompany) {
-                showCompanyAuth();
-                return;
-            }
-            
-            userInterface.style.display = 'none';
+            userInterface.classList.add('hidden');
             companyAuth.classList.add('hidden');
             companyDashboard.classList.remove('hidden');
             loadCompanyDashboard();
         }
 
-        // Load company dashboard - UPDATED (REMOVED NUTRITION STATS)
+        // Load company dashboard with nutrition stats
         function loadCompanyDashboard() {
             if (!currentCompany) return;
 
@@ -2671,14 +2126,23 @@
                 companyRestaurants.some(r => r.id === item.restaurantId)
             );
 
+            // Calculate nutrition statistics
+            const itemsWithNutrition = companyMenuItems.filter(item => item.nutrition);
+            const avgCalories = itemsWithNutrition.length > 0 ? 
+                Math.round(itemsWithNutrition.reduce((sum, item) => sum + item.nutrition.calories, 0) / itemsWithNutrition.length) : 0;
+            const avgProtein = itemsWithNutrition.length > 0 ? 
+                Math.round(itemsWithNutrition.reduce((sum, item) => sum + item.nutrition.protein, 0) / itemsWithNutrition.length) : 0;
+            const nutritionCompletePercent = companyMenuItems.length > 0 ? 
+                Math.round((itemsWithNutrition.length / companyMenuItems.length) * 100) : 0;
+
             companyDashboard.innerHTML = `
                 <div class="dashboard-header">
                     <div class="company-info">
                         <h2>${currentCompany.name}</h2>
-                        <p><i class="fas fa-envelope"></i> ${currentCompany.email} | <i class="fas fa-phone"></i> ${currentCompany.phone}</p>
+                        <p>${currentCompany.email}</p>
                     </div>
                     <div class="dashboard-actions">
-                        <button class="logout-btn" id="logoutBtn">
+                        <button class="company-login-btn" id="logoutBtn">
                             <i class="fas fa-sign-out-alt"></i> Logout
                         </button>
                     </div>
@@ -2701,65 +2165,53 @@
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon">
-                            <i class="fas fa-allergies"></i>
+                            <i class="fas fa-apple-alt"></i>
                         </div>
-                        <div class="stat-number">${companyRestaurants.filter(r => r.hasAllergenInfo).length}</div>
-                        <div class="stat-label">Allergen Info</div>
+                        <div class="stat-number">${avgCalories}</div>
+                        <div class="stat-label">Avg Calories</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon">
                             <i class="fas fa-chart-line"></i>
                         </div>
-                        <div class="stat-number">${companyMenuItems.filter(item => item.allergens.length > 0).length}</div>
-                        <div class="stat-label">Items with Allergens</div>
+                        <div class="stat-number">${nutritionCompletePercent}%</div>
+                        <div class="stat-label">Nutrition Complete</div>
                     </div>
                 </div>
 
                 <div class="dashboard-section">
                     <div class="dashboard-section-title">
-                        <span><i class="fas fa-store"></i> Your Restaurants</span>
+                        <span>Your Restaurants</span>
                         <button class="add-button" id="addRestaurantBtn">
                             <i class="fas fa-plus"></i> Add Restaurant
                         </button>
                     </div>
                     <div class="dashboard-list" id="companyRestaurantsList">
                         ${companyRestaurants.length > 0 ? 
-                            companyRestaurants.map(restaurant => {
-                                const restaurantMenu = menuItems.filter(item => item.restaurantId === restaurant.id);
-                                return `
-                                    <div class="list-item">
-                                        <div class="list-item-info">
-                                            <h4>${restaurant.name}</h4>
-                                            <p>
-                                                <span><i class="fas fa-utensils"></i> ${restaurant.type}</span>
-                                                <span><i class="fas fa-map-marker-alt"></i> ${restaurant.location}</span>
-                                                <span><i class="fas fa-utensils"></i> ${restaurantMenu.length} menu items</span>
-                                                ${restaurant.hasAllergenInfo ? '<span style="color: var(--safe);"><i class="fas fa-check"></i> Allergen Info</span>' : '<span style="color: var(--warning);"><i class="fas fa-exclamation"></i> Needs Allergen Info</span>'}
-                                            </p>
-                                            ${restaurant.description ? `<p style="color: var(--gray); font-size: 0.95rem; margin-top: 10px;">${restaurant.description}</p>` : ''}
-                                        </div>
-                                        <div class="list-item-actions">
-                                            <button class="action-btn view-btn" onclick="viewRestaurantMenu(${restaurant.id})" title="View Menu">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="action-btn edit-btn" onclick="editRestaurant(${restaurant.id})" title="Edit Restaurant">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="action-btn delete-btn" onclick="deleteRestaurant(${restaurant.id})" title="Delete Restaurant">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
+                            companyRestaurants.map(restaurant => `
+                                <div class="list-item">
+                                    <div class="list-item-info">
+                                        <h4>${restaurant.name}</h4>
+                                        <p>${restaurant.type} • ${restaurant.location}</p>
                                     </div>
-                                `;
-                            }).join('') : 
-                            '<div style="text-align: center; padding: 40px; color: var(--gray);"><p>No restaurants added yet. Add your first restaurant!</p></div>'
+                                    <div class="list-item-actions">
+                                        <button class="action-btn edit-btn" data-id="${restaurant.id}">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="action-btn delete-btn" data-id="${restaurant.id}">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            `).join('') : 
+                            '<p style="text-align: center; color: var(--gray); padding: 20px;">No restaurants added yet.</p>'
                         }
                     </div>
                 </div>
 
                 <div class="dashboard-section">
                     <div class="dashboard-section-title">
-                        <span><i class="fas fa-utensils"></i> All Menu Items</span>
+                        <span>Menu Items (${companyMenuItems.length})</span>
                         <button class="add-button" id="addMenuItemBtn">
                             <i class="fas fa-plus"></i> Add Item
                         </button>
@@ -2768,161 +2220,137 @@
                         ${companyMenuItems.length > 0 ? 
                             companyMenuItems.map(item => {
                                 const restaurant = restaurants.find(r => r.id === item.restaurantId);
-                                const hasAllergens = item.allergens.length > 0 ? 
-                                    '<span style="color: var(--warning);"><i class="fas fa-exclamation"></i> ' + item.allergens.length + ' allergens</span>' : 
-                                    '<span style="color: var(--safe);"><i class="fas fa-check"></i> Allergen-free</span>';
+                                const hasNutrition = item.nutrition ? '✅ Nutrition' : '❌ No Nutrition';
                                 return `
                                     <div class="list-item">
                                         <div class="list-item-info">
-                                            <h4>${item.name} <span style="color: var(--primary); font-size: 1rem;">₱${item.price.toFixed(2)}</span></h4>
-                                            <p>
-                                                <span><i class="fas fa-store"></i> ${restaurant?.name || 'Unknown'}</span>
-                                                <span><i class="fas fa-tag"></i> ${item.category}</span>
-                                                ${hasAllergens}
-                                            </p>
+                                            <h4>${item.name}</h4>
+                                            <p>${restaurant?.name || 'Unknown'} • ${item.allergens.length} allergens • ${hasNutrition}</p>
                                         </div>
                                         <div class="list-item-actions">
-                                            <button class="action-btn edit-btn" onclick="editMenuItem(${item.id})" title="Edit Menu Item">
+                                            <button class="action-btn edit-btn" data-id="${item.id}">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <button class="action-btn delete-btn" onclick="deleteMenuItem(${item.id})" title="Delete Menu Item">
+                                            <button class="action-btn nutrition-btn" data-id="${item.id}">
+                                                <i class="fas fa-apple-alt"></i>
+                                            </button>
+                                            <button class="action-btn delete-btn" data-id="${item.id}">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </div>
                                     </div>
                                 `;
                             }).join('') : 
-                            '<div style="text-align: center; padding: 40px; color: var(--gray);"><p>No menu items added yet. Add your first item!</p></div>'
+                            '<p style="text-align: center; color: var(--gray); padding: 20px;">No menu items added yet.</p>'
                         }
                     </div>
                 </div>
             `;
 
             // Add event listeners for dashboard buttons
+            document.getElementById('logoutBtn')?.addEventListener('click', logout);
             document.getElementById('addRestaurantBtn')?.addEventListener('click', () => {
                 addRestaurantModal.classList.add('active');
             });
-
             document.getElementById('addMenuItemBtn')?.addEventListener('click', () => {
-                // Get company restaurants for dropdown
-                const companyRestaurants = restaurants.filter(r => r.companyId === currentCompany.id);
-                const restaurantSelect = document.createElement('select');
-                restaurantSelect.className = 'form-input';
-                restaurantSelect.id = 'menuRestaurantSelect';
-                restaurantSelect.innerHTML = '<option value="">Select Restaurant</option>' + 
-                    companyRestaurants.map(r => `<option value="${r.id}">${r.name}</option>`).join('');
-                
-                // Replace hidden input with select
-                const hiddenInput = document.getElementById('menuRestaurantId');
-                const formGroup = document.createElement('div');
-                formGroup.className = 'form-group';
-                formGroup.innerHTML = `
-                    <label class="form-label"><i class="fas fa-store"></i> Restaurant</label>
-                `;
-                formGroup.appendChild(restaurantSelect);
-                
-                // Insert at beginning of form
-                const form = document.getElementById('addMenuItemForm');
-                form.insertBefore(formGroup, form.firstChild);
-                
-                addMenuItemModal.classList.add('active');
+                alert('Add menu item feature would open a form in a full implementation.');
             });
 
-            document.getElementById('logoutBtn')?.addEventListener('click', logout);
+            // Add event listeners for edit/delete buttons
+            document.querySelectorAll('#companyRestaurantsList .edit-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const restaurantId = parseInt(e.currentTarget.dataset.id);
+                    editRestaurant(restaurantId);
+                });
+            });
+
+            document.querySelectorAll('#companyRestaurantsList .delete-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const restaurantId = parseInt(e.currentTarget.dataset.id);
+                    if (confirm('Are you sure you want to delete this restaurant? This will also delete all associated menu items.')) {
+                        deleteRestaurant(restaurantId);
+                    }
+                });
+            });
+
+            // Add event listeners for nutrition buttons
+            document.querySelectorAll('#companyMenuItemsList .nutrition-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const itemId = parseInt(e.currentTarget.dataset.id);
+                    openNutritionModal(itemId);
+                });
+            });
+
+            document.querySelectorAll('#companyMenuItemsList .edit-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const itemId = parseInt(e.currentTarget.dataset.id);
+                    editMenuItem(itemId);
+                });
+            });
+
+            document.querySelectorAll('#companyMenuItemsList .delete-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const itemId = parseInt(e.currentTarget.dataset.id);
+                    if (confirm('Are you sure you want to delete this menu item?')) {
+                        deleteMenuItem(itemId);
+                    }
+                });
+            });
         }
 
-        // View restaurant menu
-        window.viewRestaurantMenu = function(restaurantId) {
-            const restaurant = restaurants.find(r => r.id === restaurantId);
-            const restaurantMenu = menuItems.filter(item => item.restaurantId === restaurantId);
-            
-            let menuText = `Menu for ${restaurant.name}:\n\n`;
-            restaurantMenu.forEach(item => {
-                menuText += `• ${item.name} - ₱${item.price.toFixed(2)}\n`;
-                menuText += `  ${item.description}\n`;
-                if (item.allergens.length > 0) {
-                    const allergenNames = item.allergens.map(id => {
-                        const allergen = allergens.find(a => a.id === id);
-                        return allergen ? allergen.name : 'Unknown';
-                    });
-                    menuText += `  Allergens: ${allergenNames.join(', ')}\n`;
-                } else {
-                    menuText += `  Allergens: None detected\n`;
-                }
-                menuText += '\n';
-            });
-            
-            alert(menuText);
-        };
-
-        // Edit restaurant
-        window.editRestaurant = function(restaurantId) {
-            const restaurant = restaurants.find(r => r.id === restaurantId);
-            if (!restaurant) return;
-            
-            document.getElementById('editRestaurantId').value = restaurant.id;
-            document.getElementById('editRestaurantName').value = restaurant.name;
-            document.getElementById('editRestaurantLocation').value = restaurant.location;
-            document.getElementById('editRestaurantGPS').value = restaurant.gps || '';
-            document.getElementById('editRestaurantType').value = restaurant.type;
-            document.getElementById('editRestaurantDescription').value = restaurant.description || '';
-            
-            editRestaurantModal.classList.add('active');
-        };
-
-        // Delete restaurant
-        window.deleteRestaurant = function(restaurantId) {
-            if (confirm('Are you sure you want to delete this restaurant? This will also delete all associated menu items.')) {
-                restaurants = restaurants.filter(r => r.id !== restaurantId);
-                menuItems = menuItems.filter(item => item.restaurantId !== restaurantId);
-                
-                if (currentCompany) {
-                    // Update company restaurants list
-                    const companyIndex = companies.findIndex(c => c.id === currentCompany.id);
-                    if (companyIndex !== -1) {
-                        companies[companyIndex].restaurants = companies[companyIndex].restaurants.filter(id => id !== restaurantId);
-                    }
-                }
-                
-                saveData();
-                populateRestaurants();
-                loadCompanyDashboard();
-                showToast('Restaurant deleted successfully.', 'success');
-            }
-        };
-
-        // Edit menu item
-        window.editMenuItem = function(itemId) {
+        // Open nutrition modal
+        function openNutritionModal(itemId) {
             const item = menuItems.find(m => m.id === itemId);
             if (!item) return;
             
-            document.getElementById('editMenuItemId').value = item.id;
-            document.getElementById('editMenuItemName').value = item.name;
-            document.getElementById('editMenuItemDescription').value = item.description;
-            document.getElementById('editMenuItemPrice').value = item.price;
-            document.getElementById('editMenuItemCategory').value = item.category;
-            document.getElementById('editMenuItemImage').value = item.image || '';
+            document.getElementById('nutritionItemId').value = itemId;
             
-            // Set selected allergens
-            setSelectedAllergensInGrid('editAllergenSelectionGrid', item.allergens);
-            
-            editMenuItemModal.classList.add('active');
-        };
-
-        // Open nutrition modal - KEEPING BUT DISABLED
-        window.openNutritionModal = function(itemId) {
-            showToast('Nutrition feature is currently disabled. This is an allergen-only version.', 'warning');
-        };
-
-        // Delete menu item
-        window.deleteMenuItem = function(itemId) {
-            if (confirm('Are you sure you want to delete this menu item?')) {
-                menuItems = menuItems.filter(item => item.id !== itemId);
-                saveData();
-                loadCompanyDashboard();
-                showToast('Menu item deleted successfully.', 'success');
+            if (item.nutrition) {
+                document.getElementById('nutritionCalories').value = item.nutrition.calories || '';
+                document.getElementById('nutritionProtein').value = item.nutrition.protein || '';
+                document.getElementById('nutritionCarbs').value = item.nutrition.carbs || '';
+                document.getElementById('nutritionSugar').value = item.nutrition.sugar || '';
+                document.getElementById('nutritionFat').value = item.nutrition.fat || '';
+                document.getElementById('nutritionSaturatedFat').value = item.nutrition.saturatedFat || '';
+                document.getElementById('nutritionFiber').value = item.nutrition.fiber || '';
+                document.getElementById('nutritionSodium').value = item.nutrition.sodium || '';
+            } else {
+                // Clear all fields
+                document.querySelectorAll('#nutritionForm input').forEach(input => {
+                    if (input.type !== 'hidden') input.value = '';
+                });
             }
-        };
+            
+            nutritionModal.classList.add('active');
+        }
+
+        // Handle nutrition form submission
+        function handleNutritionForm(e) {
+            e.preventDefault();
+            
+            const itemId = parseInt(document.getElementById('nutritionItemId').value);
+            const item = menuItems.find(m => m.id === itemId);
+            
+            if (!item) return;
+            
+            // Create or update nutrition object
+            item.nutrition = {
+                calories: parseInt(document.getElementById('nutritionCalories').value) || 0,
+                protein: parseFloat(document.getElementById('nutritionProtein').value) || 0,
+                carbs: parseFloat(document.getElementById('nutritionCarbs').value) || 0,
+                sugar: parseFloat(document.getElementById('nutritionSugar').value) || 0,
+                fat: parseFloat(document.getElementById('nutritionFat').value) || 0,
+                saturatedFat: parseFloat(document.getElementById('nutritionSaturatedFat').value) || 0,
+                fiber: parseFloat(document.getElementById('nutritionFiber').value) || 0,
+                sodium: parseInt(document.getElementById('nutritionSodium').value) || 0
+            };
+            
+            nutritionModal.classList.remove('active');
+            alert('Nutritional information saved successfully!');
+            
+            // Reload dashboard to show updated information
+            loadCompanyDashboard();
+        }
 
         // Handle company login
         function handleCompanyLogin(e) {
@@ -2931,220 +2359,157 @@
             const companyEmail = document.getElementById('companyEmail').value;
             const password = document.getElementById('companyPassword').value;
             
+            // Find company by email only
             const company = companies.find(c => c.email === companyEmail && c.password === password);
             
             if (company) {
                 currentCompany = company;
                 localStorage.setItem('katiCheckCompany', JSON.stringify(company));
-                showToast('Login successful!', 'success');
-                setTimeout(() => {
-                    showCompanyDashboard();
-                }, 1000);
+                showCompanyDashboard();
             } else {
-                showToast('Invalid email or password. Please try again.', 'error');
+                alert('Invalid email or password. Please try again.');
             }
         }
 
         // Handle company registration
-        async function handleCompanyRegister(e) {
+        function handleCompanyRegister(e) {
             e.preventDefault();
             
             const companyName = document.getElementById('regCompanyName').value;
             const companyEmail = document.getElementById('regCompanyEmail').value;
-            const phone = document.getElementById('regPhone').value;
             const password = document.getElementById('regPassword').value;
             const confirmPassword = document.getElementById('regConfirmPassword').value;
+            const restaurantCount = parseInt(document.getElementById('regRestaurantCount').value);
             
             if (password !== confirmPassword) {
-                showToast('Passwords do not match.', 'error');
+                alert('Passwords do not match.');
                 return;
             }
             
             const existingCompany = companies.find(c => c.email === companyEmail);
             if (existingCompany) {
-                showToast('A company with this email already exists.', 'error');
+                alert('A company with this email already exists.');
                 return;
             }
             
             const newCompany = {
-                id: companies.length > 0 ? Math.max(...companies.map(c => c.id)) + 1 : 1,
+                id: companies.length + 1,
                 name: companyName,
                 email: companyEmail,
-                phone: phone,
                 password: password,
                 restaurants: []
             };
             
             companies.push(newCompany);
             currentCompany = newCompany;
-            saveData();
+            localStorage.setItem('katiCheckCompany', JSON.stringify(newCompany));
             
-            showToast('Registration successful!', 'success');
-            setTimeout(() => {
-                showCompanyDashboard();
-            }, 1500);
+            alert('Company registered successfully! You can now add your restaurants.');
+            showCompanyDashboard();
         }
 
         // Handle add restaurant
         function handleAddRestaurant(e) {
             e.preventDefault();
             
-            if (!currentCompany) {
-                showToast('Please login first', 'error');
-                return;
-            }
+            if (!currentCompany) return;
             
             const restaurantName = document.getElementById('restaurantName').value;
             const restaurantLocation = document.getElementById('restaurantLocation').value;
-            const restaurantGPS = document.getElementById('restaurantGPS').value;
             const restaurantType = document.getElementById('restaurantType').value;
             const restaurantDescription = document.getElementById('restaurantDescription').value;
             
             const newRestaurant = {
-                id: restaurants.length > 0 ? Math.max(...restaurants.map(r => r.id)) + 1 : 1,
+                id: restaurants.length + 1,
                 name: restaurantName,
                 companyId: currentCompany.id,
                 type: restaurantType,
                 location: restaurantLocation,
-                gps: restaurantGPS,
-                description: restaurantDescription,
-                hasAllergenInfo: false,
-                allergensAvailable: false
+                description: restaurantDescription
             };
             
             restaurants.push(newRestaurant);
             currentCompany.restaurants.push(newRestaurant.id);
-            
-            saveData();
             
             // Update user interface restaurant list
             populateRestaurants();
             
             // Reset and close modal
             addRestaurantModal.classList.remove('active');
-            addRestaurantForm.reset();
+            document.getElementById('addRestaurantForm').reset();
             
             // Reload dashboard
             loadCompanyDashboard();
             
-            showToast('Restaurant added successfully!', 'success');
+            alert('Restaurant added successfully!');
         }
 
-        // Handle edit restaurant
-        function handleEditRestaurant(e) {
-            e.preventDefault();
+        // Edit restaurant
+        function editRestaurant(restaurantId) {
+            alert('Edit restaurant feature would open a form in a full implementation.');
+        }
+
+        // Edit menu item
+        function editMenuItem(itemId) {
+            alert('Edit menu item feature would open a form in a full implementation.');
+        }
+
+        // Delete restaurant
+        function deleteRestaurant(restaurantId) {
+            restaurants = restaurants.filter(r => r.id !== restaurantId);
             
-            const restaurantId = parseInt(document.getElementById('editRestaurantId').value);
-            const restaurantIndex = restaurants.findIndex(r => r.id === restaurantId);
-            
-            if (restaurantIndex === -1) {
-                showToast('Restaurant not found', 'error');
-                return;
+            if (currentCompany) {
+                currentCompany.restaurants = currentCompany.restaurants.filter(id => id !== restaurantId);
             }
             
-            restaurants[restaurantIndex] = {
-                ...restaurants[restaurantIndex],
-                name: document.getElementById('editRestaurantName').value,
-                location: document.getElementById('editRestaurantLocation').value,
-                gps: document.getElementById('editRestaurantGPS').value,
-                type: document.getElementById('editRestaurantType').value,
-                description: document.getElementById('editRestaurantDescription').value
-            };
+            menuItems = menuItems.filter(item => item.restaurantId !== restaurantId);
             
-            saveData();
-            
-            editRestaurantModal.classList.remove('active');
+            // Update user interface
             populateRestaurants();
             loadCompanyDashboard();
             
-            showToast('Restaurant updated successfully!', 'success');
+            alert('Restaurant deleted successfully.');
         }
 
-        // Handle add menu item
-        function handleAddMenuItem(e) {
-            e.preventDefault();
-            
-            const restaurantSelect = document.getElementById('menuRestaurantSelect');
-            if (!restaurantSelect) {
-                showToast('Please select a restaurant', 'error');
-                return;
-            }
-            
-            const restaurantId = parseInt(restaurantSelect.value);
-            if (!restaurantId) {
-                showToast('Please select a restaurant first', 'error');
-                return;
-            }
-            
-            const selectedAllergenIds = getSelectedAllergensFromGrid('allergenSelectionGrid');
-            
-            const menuItemData = {
-                id: menuItems.length > 0 ? Math.max(...menuItems.map(m => m.id)) + 1 : 1,
-                restaurantId: restaurantId,
-                name: document.getElementById('menuItemName').value,
-                description: document.getElementById('menuItemDescription').value,
-                price: parseFloat(document.getElementById('menuItemPrice').value),
-                category: document.getElementById('menuItemCategory').value,
-                image: document.getElementById('menuItemImage').value || '',
-                allergens: selectedAllergenIds
-            };
-            
-            menuItems.push(menuItemData);
-            saveData();
-            
-            addMenuItemModal.classList.remove('active');
+        // Delete menu item
+        function deleteMenuItem(itemId) {
+            menuItems = menuItems.filter(item => item.id !== itemId);
             loadCompanyDashboard();
-            
-            showToast('Menu item added successfully!', 'success');
+            alert('Menu item deleted successfully.');
         }
 
-        // Handle edit menu item
-        function handleEditMenuItem(e) {
-            e.preventDefault();
-            
-            const itemId = parseInt(document.getElementById('editMenuItemId').value);
-            const itemIndex = menuItems.findIndex(m => m.id === itemId);
-            
-            if (itemIndex === -1) {
-                showToast('Menu item not found', 'error');
-                return;
-            }
-            
-            const selectedAllergenIds = getSelectedAllergensFromGrid('editAllergenSelectionGrid');
-            
-            menuItems[itemIndex] = {
-                ...menuItems[itemIndex],
-                name: document.getElementById('editMenuItemName').value,
-                description: document.getElementById('editMenuItemDescription').value,
-                price: parseFloat(document.getElementById('editMenuItemPrice').value),
-                category: document.getElementById('editMenuItemCategory').value,
-                image: document.getElementById('editMenuItemImage').value || '',
-                allergens: selectedAllergenIds
-            };
-            
-            saveData();
-            
-            editMenuItemModal.classList.remove('active');
-            loadCompanyDashboard();
-            
-            showToast('Menu item updated successfully!', 'success');
+        // Select all restaurants
+        function selectAllRestaurantsFunc() {
+            selectedRestaurants = new Set(restaurants.map(r => r.id));
+            document.querySelectorAll('.restaurant-item').forEach(item => {
+                item.classList.add('selected');
+                item.querySelector('.restaurant-checkbox').checked = true;
+            });
         }
 
-        // Handle nutrition form - DISABLED
-        function handleNutritionForm(e) {
-            e.preventDefault();
-            showToast('Nutrition feature is currently disabled. This is an allergen-only version.', 'warning');
-            nutritionModal.classList.remove('active');
+        // Clear all restaurant selections
+        function clearAllRestaurantsFunc() {
+            selectedRestaurants.clear();
+            document.querySelectorAll('.restaurant-item').forEach(item => {
+                item.classList.remove('selected');
+                item.querySelector('.restaurant-checkbox').checked = false;
+            });
+        }
+
+        // Reset nutrition filters
+        function resetNutritionFiltersFunc() {
+            calorieRange.value = 2000;
+            proteinRange.value = 0;
+            carbRange.value = 200;
+            sugarRange.value = 100;
+            updateNutritionFilterDisplays();
         }
 
         // Logout
         function logout() {
             currentCompany = null;
             localStorage.removeItem('katiCheckCompany');
-            showToast('Logged out successfully', 'success');
-            setTimeout(() => {
-                showUserInterface();
-            }, 1000);
+            showUserInterface();
         }
 
         // Setup event listeners
@@ -3194,29 +2559,30 @@
             });
             
             // Restaurant selection buttons
-            selectAllRestaurants.addEventListener('click', () => {
-                selectedRestaurants = new Set(restaurants.map(r => r.id));
-                document.querySelectorAll('.restaurant-item').forEach(item => {
-                    item.classList.add('selected');
-                });
-                showToast('All restaurants selected', 'success');
+            selectAllRestaurants.addEventListener('click', selectAllRestaurantsFunc);
+            clearAllRestaurants.addEventListener('click', clearAllRestaurantsFunc);
+            
+            // Nutrition filter toggle
+            nutritionFilterToggle.addEventListener('click', () => {
+                nutritionFilterContent.classList.toggle('active');
+                const icon = nutritionFilterToggle.querySelector('i');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
             });
             
-            clearAllRestaurants.addEventListener('click', () => {
-                selectedRestaurants.clear();
-                document.querySelectorAll('.restaurant-item').forEach(item => {
-                    item.classList.remove('selected');
-                });
-                showToast('All restaurants cleared', 'success');
-            });
+            // Nutrition filter range inputs
+            calorieRange.addEventListener('input', updateNutritionFilterDisplays);
+            proteinRange.addEventListener('input', updateNutritionFilterDisplays);
+            carbRange.addEventListener('input', updateNutritionFilterDisplays);
+            sugarRange.addEventListener('input', updateNutritionFilterDisplays);
+            
+            // Reset nutrition filters
+            resetNutritionFilters.addEventListener('click', resetNutritionFiltersFunc);
             
             // Forms
             companyLoginForm.addEventListener('submit', handleCompanyLogin);
             companyRegisterForm.addEventListener('submit', handleCompanyRegister);
-            addRestaurantForm.addEventListener('submit', handleAddRestaurant);
-            editRestaurantForm.addEventListener('submit', handleEditRestaurant);
-            addMenuItemForm.addEventListener('submit', handleAddMenuItem);
-            editMenuItemForm.addEventListener('submit', handleEditMenuItem);
+            document.getElementById('addRestaurantForm').addEventListener('submit', handleAddRestaurant);
             nutritionForm.addEventListener('submit', handleNutritionForm);
             
             // Modals
@@ -3225,28 +2591,17 @@
                     document.querySelectorAll('.modal').forEach(modal => {
                         modal.classList.remove('active');
                     });
-                    // Reset forms when closing
-                    document.querySelectorAll('form').forEach(form => {
-                        if (form.id !== 'companyLoginForm' && form.id !== 'companyRegisterForm') {
-                            form.reset();
-                        }
-                    });
                 });
             });
             
+            // Close modal on outside click
             window.addEventListener('click', (e) => {
                 if (e.target.classList.contains('modal')) {
                     e.target.classList.remove('active');
-                    // Reset forms when closing
-                    document.querySelectorAll('form').forEach(form => {
-                        if (form.id !== 'companyLoginForm' && form.id !== 'companyRegisterForm') {
-                            form.reset();
-                        }
-                    });
                 }
             });
             
-            // Prevent form submission on enter
+            // Prevent form submission on enter in search
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA' && e.target.tagName !== 'INPUT') {
                     e.preventDefault();
