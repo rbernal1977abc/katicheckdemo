@@ -1503,6 +1503,41 @@
         </div>
     </div>
 
+    <!-- Add Menu Item Modal -->
+    <div id="addMenuItemModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Menu Item</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="addMenuItemForm">
+                <div class="form-group">
+                    <label class="form-label">Restaurant</label>
+                    <select class="form-input" id="menuItemRestaurant" required>
+                        <option value="">Select restaurant</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Item Name</label>
+                    <input type="text" class="form-input" id="menuItemName" placeholder="Enter item name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-input" id="menuItemDescription" placeholder="Enter item description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Allergens (select all that apply)</label>
+                    <div class="allergen-grid" id="menuItemAllergens">
+                        <!-- Allergens populated by JavaScript -->
+                    </div>
+                </div>
+                <button type="submit" class="auth-button">
+                    <i class="fas fa-plus"></i> Add Menu Item
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- Nutrition Modal -->
     <div id="nutritionModal" class="modal">
         <div class="modal-content">
@@ -1536,40 +1571,47 @@
     </div>
 
     <script>
-        // Application Data
+        // Application Data - Based on realistic Philippine restaurant data
         const allergens = [
-            { id: 1, name: "Shrimp", icon: "fas fa-shrimp" },
-            { id: 2, name: "Peanuts", icon: "fas fa-peanut" },
-            { id: 3, name: "Tree Nuts", icon: "fas fa-acorn" },
-            { id: 4, name: "Milk", icon: "fas fa-wine-bottle" },
-            { id: 5, name: "Eggs", icon: "fas fa-egg" },
-            { id: 6, name: "Wheat", icon: "fas fa-bread-slice" },
-            { id: 7, name: "Soy", icon: "fas fa-seedling" },
-            { id: 8, name: "Fish", icon: "fas fa-fish" },
-            { id: 9, name: "Shellfish", icon: "fas fa-crab" },
-            { id: 10, name: "Sesame", icon: "fas fa-seedling" },
-            { id: 11, name: "Gluten", icon: "fas fa-wheat" },
-            { id: 12, name: "Sulfites", icon: "fas fa-flask" }
+            { id: 1, name: "Shrimp", icon: "fas fa-shrimp", commonIn: ["Sinigang", "Pancit", "Adobo sa Gata"] },
+            { id: 2, name: "Peanuts", icon: "fas fa-peanut", commonIn: ["Kare-Kare", "Satay", "Peanut Sauce"] },
+            { id: 3, name: "Tree Nuts", icon: "fas fa-acorn", commonIn: ["Pastries", "Desserts", "Specialty Dishes"] },
+            { id: 4, name: "Milk", icon: "fas fa-wine-bottle", commonIn: ["Desserts", "Sauces", "Baked Goods"] },
+            { id: 5, name: "Eggs", icon: "fas fa-egg", commonIn: ["Baked Goods", "Pancit", "Leche Flan"] },
+            { id: 6, name: "Wheat", icon: "fas fa-bread-slice", commonIn: ["Breads", "Noodles", "Fried Dishes"] },
+            { id: 7, name: "Soy", icon: "fas fa-seedling", commonIn: ["Adobo", "Tocino", "Marinated Dishes"] },
+            { id: 8, name: "Fish", icon: "fas fa-fish", commonIn: ["Sinigang", "Fried Fish", "Escabeche"] },
+            { id: 9, name: "Shellfish", icon: "fas fa-crab", commonIn: ["Sinigang", "Ginataang Alimasag", "Seafood Platters"] },
+            { id: 10, name: "Sesame", icon: "fas fa-seedling", commonIn: ["Asian Dishes", "Salads", "Dressings"] },
+            { id: 11, name: "Gluten", icon: "fas fa-wheat", commonIn: ["Wheat-based Products", "Breads", "Pasta"] },
+            { id: 12, name: "Sulfites", icon: "fas fa-flask", commonIn: ["Preserved Foods", "Dried Fruits", "Wine"] }
         ];
 
         let restaurants = [
-            { id: 1, name: "Jollibee", companyId: 1, type: "Fast Food", location: "Nationwide" },
-            { id: 2, name: "McDonald's", companyId: 2, type: "Fast Food", location: "Nationwide" },
-            { id: 3, name: "Greenwich", companyId: 1, type: "Fast Food", location: "Nationwide" },
-            { id: 4, name: "Max's Restaurant", companyId: 3, type: "Casual Dining", location: "Major Cities" },
-            { id: 5, name: "Mang Inasal", companyId: 4, type: "Fast Food", location: "Nationwide" },
-            { id: 6, name: "Chowking", companyId: 1, type: "Fast Food", location: "Nationwide" },
-            { id: 7, name: "Goldilocks", companyId: 5, type: "Bakery", location: "Nationwide" },
-            { id: 8, name: "Kenny Rogers", companyId: 6, type: "Casual Dining", location: "Major Cities" }
+            { id: 1, name: "Jollibee", companyId: 1, type: "Fast Food", location: "Nationwide", description: "Philippines' largest fast food chain" },
+            { id: 2, name: "McDonald's", companyId: 2, type: "Fast Food", location: "Nationwide", description: "Global fast food chain" },
+            { id: 3, name: "Greenwich", companyId: 1, type: "Fast Food", location: "Nationwide", description: "Pizza and pasta chain" },
+            { id: 4, name: "Max's Restaurant", companyId: 3, type: "Casual Dining", location: "Major Cities", description: "Home of the famous fried chicken" },
+            { id: 5, name: "Mang Inasal", companyId: 4, type: "Fast Food", location: "Nationwide", description: "Grilled chicken and unlimited rice" },
+            { id: 6, name: "Chowking", companyId: 1, type: "Fast Food", location: "Nationwide", description: "Chinese fast food" },
+            { id: 7, name: "Goldilocks", companyId: 5, type: "Bakery", location: "Nationwide", description: "Bakeshop and restaurant" },
+            { id: 8, name: "Kenny Rogers", companyId: 6, type: "Casual Dining", location: "Major Cities", description: "Roast chicken and healthy meals" },
+            { id: 9, name: "KFC Philippines", companyId: 7, type: "Fast Food", location: "Nationwide", description: "Fried chicken chain" },
+            { id: 10, name: "Burger King", companyId: 8, type: "Fast Food", location: "Major Cities", description: "Burger fast food chain" },
+            { id: 11, name: "Tokyo Tokyo", companyId: 9, type: "Fast Food", location: "Major Cities", description: "Japanese fast food" },
+            { id: 12, name: "Bonchon", companyId: 10, type: "Fast Food", location: "Major Cities", description: "Korean-style fried chicken" },
+            { id: 13, name: "Starbucks PH", companyId: 11, type: "Cafe", location: "Nationwide", description: "Coffee and snacks" },
+            { id: 14, name: "Army Navy", companyId: 12, type: "Fast Food", location: "Major Cities", description: "Burritos and comfort food" },
+            { id: 15, name: "Pancake House", companyId: 13, type: "Casual Dining", location: "Major Cities", description: "Breakfast and all-day dining" }
         ];
 
         let menuItems = [
             { 
                 id: 1, 
                 restaurantId: 1, 
-                name: "Chickenjoy", 
-                description: "Crispy fried chicken with rice", 
-                allergens: [2, 5, 6],
+                name: "Chickenjoy (1pc)", 
+                description: "World-famous crispy fried chicken", 
+                allergens: [2, 5, 6, 11], // Peanuts, Eggs, Wheat, Gluten
                 nutrition: {
                     calories: 320,
                     protein: 28,
@@ -1586,7 +1628,7 @@
                 restaurantId: 1, 
                 name: "Jolly Spaghetti", 
                 description: "Sweet style spaghetti with hotdog and cheese", 
-                allergens: [5, 7],
+                allergens: [4, 5, 6, 11], // Milk, Eggs, Wheat, Gluten
                 nutrition: {
                     calories: 420,
                     protein: 12,
@@ -1601,18 +1643,18 @@
             { 
                 id: 3, 
                 restaurantId: 1, 
-                name: "Shrimp Burger", 
-                description: "Burger with shrimp patty and special sauce", 
-                allergens: [1, 5, 6],
+                name: "Yumburger", 
+                description: "Classic burger with special dressing", 
+                allergens: [4, 5, 6, 11], // Milk, Eggs, Wheat, Gluten
                 nutrition: {
-                    calories: 380,
-                    protein: 18,
-                    carbs: 45,
-                    sugar: 8,
-                    fat: 16,
+                    calories: 280,
+                    protein: 14,
+                    carbs: 30,
+                    sugar: 5,
+                    fat: 12,
                     saturatedFat: 3,
                     fiber: 2,
-                    sodium: 920
+                    sodium: 520
                 }
             },
             { 
@@ -1620,7 +1662,7 @@
                 restaurantId: 2, 
                 name: "Big Mac", 
                 description: "Double beef burger with special sauce", 
-                allergens: [5, 6, 7],
+                allergens: [4, 5, 6, 7, 11], // Milk, Eggs, Wheat, Soy, Gluten
                 nutrition: {
                     calories: 540,
                     protein: 25,
@@ -1637,7 +1679,7 @@
                 restaurantId: 2, 
                 name: "Filet-O-Fish", 
                 description: "Fish fillet burger with tartar sauce", 
-                allergens: [5, 6, 8],
+                allergens: [4, 5, 6, 8, 11], // Milk, Eggs, Wheat, Fish, Gluten
                 nutrition: {
                     calories: 390,
                     protein: 16,
@@ -1654,7 +1696,7 @@
                 restaurantId: 3, 
                 name: "Hawaiian Pizza", 
                 description: "Pizza with ham, pineapple, and cheese", 
-                allergens: [4, 5, 6],
+                allergens: [4, 5, 6, 11], // Milk, Eggs, Wheat, Gluten
                 nutrition: {
                     calories: 280,
                     protein: 12,
@@ -1669,9 +1711,9 @@
             { 
                 id: 7, 
                 restaurantId: 4, 
-                name: "Fried Chicken", 
-                description: "Classic Max's fried chicken with rice", 
-                allergens: [2, 5, 6],
+                name: "Max's Fried Chicken (1/4)", 
+                description: "Signature fried chicken with rice", 
+                allergens: [2, 5, 6, 11], // Peanuts, Eggs, Wheat, Gluten
                 nutrition: {
                     calories: 450,
                     protein: 35,
@@ -1686,43 +1728,43 @@
             { 
                 id: 8, 
                 restaurantId: 5, 
-                name: "Chicken Inasal", 
-                description: "Grilled chicken with rice and special sauce", 
-                allergens: [2, 5],
+                name: "Chicken Inasal with Rice", 
+                description: "Grilled chicken with unlimited rice", 
+                allergens: [2, 7], // Peanuts, Soy
                 nutrition: {
-                    calories: 380,
-                    protein: 32,
-                    carbs: 42,
+                    calories: 580,
+                    protein: 42,
+                    carbs: 62,
                     sugar: 4,
-                    fat: 12,
-                    saturatedFat: 3,
-                    fiber: 2,
-                    sodium: 890
+                    fat: 18,
+                    saturatedFat: 4,
+                    fiber: 3,
+                    sodium: 920
                 }
             },
             { 
                 id: 9, 
                 restaurantId: 6, 
                 name: "Chicken Lauriat", 
-                description: "Chicken meal with rice, vegetables, and soup", 
-                allergens: [2, 5, 7],
+                description: "Complete meal with chicken, rice, vegetables", 
+                allergens: [5, 7, 8], // Eggs, Soy, Fish
                 nutrition: {
-                    calories: 520,
-                    protein: 26,
-                    carbs: 58,
-                    sugar: 6,
-                    fat: 21,
-                    saturatedFat: 5,
-                    fiber: 4,
-                    sodium: 1120
+                    calories: 620,
+                    protein: 32,
+                    carbs: 68,
+                    sugar: 8,
+                    fat: 25,
+                    saturatedFat: 6,
+                    fiber: 5,
+                    sodium: 1250
                 }
             },
             { 
                 id: 10, 
                 restaurantId: 7, 
-                name: "Mocha Cake", 
-                description: "Classic mocha flavored cake slice", 
-                allergens: [4, 5, 6],
+                name: "Mocha Cake Slice", 
+                description: "Classic mocha flavored cake", 
+                allergens: [3, 4, 5, 6, 11], // Tree Nuts, Milk, Eggs, Wheat, Gluten
                 nutrition: {
                     calories: 320,
                     protein: 4,
@@ -1737,25 +1779,147 @@
             { 
                 id: 11, 
                 restaurantId: 8, 
-                name: "Roast Chicken", 
+                name: "1/4 Roast Chicken Meal", 
                 description: "Healthy roast chicken with vegetables", 
-                allergens: [2, 5],
+                allergens: [2, 5, 7], // Peanuts, Eggs, Soy
                 nutrition: {
-                    calories: 280,
-                    protein: 38,
-                    carbs: 12,
-                    sugar: 4,
-                    fat: 9,
-                    saturatedFat: 2,
+                    calories: 380,
+                    protein: 42,
+                    carbs: 18,
+                    sugar: 6,
+                    fat: 15,
+                    saturatedFat: 3,
+                    fiber: 4,
+                    sodium: 820
+                }
+            },
+            { 
+                id: 12, 
+                restaurantId: 9, 
+                name: "Original Recipe Chicken", 
+                description: "Signature fried chicken piece", 
+                allergens: [5, 6, 11], // Eggs, Wheat, Gluten
+                nutrition: {
+                    calories: 410,
+                    protein: 31,
+                    carbs: 22,
+                    sugar: 2,
+                    fat: 24,
+                    saturatedFat: 7,
+                    fiber: 1,
+                    sodium: 1050
+                }
+            },
+            { 
+                id: 13, 
+                restaurantId: 10, 
+                name: "Whopper", 
+                description: "Flame-grilled beef burger", 
+                allergens: [4, 5, 6, 11], // Milk, Eggs, Wheat, Gluten
+                nutrition: {
+                    calories: 660,
+                    protein: 28,
+                    carbs: 49,
+                    sugar: 11,
+                    fat: 40,
+                    saturatedFat: 12,
+                    fiber: 2,
+                    sodium: 980
+                }
+            },
+            { 
+                id: 14, 
+                restaurantId: 11, 
+                name: "California Maki", 
+                description: "Sushi roll with crab stick and mango", 
+                allergens: [1, 9], // Shrimp, Shellfish
+                nutrition: {
+                    calories: 320,
+                    protein: 8,
+                    carbs: 58,
+                    sugar: 12,
+                    fat: 6,
+                    saturatedFat: 1,
                     fiber: 3,
-                    sodium: 760
+                    sodium: 420
+                }
+            },
+            { 
+                id: 15, 
+                restaurantId: 12, 
+                name: "Chicken Strips (2pcs)", 
+                description: "Korean-style fried chicken strips", 
+                allergens: [5, 6, 7, 11], // Eggs, Wheat, Soy, Gluten
+                nutrition: {
+                    calories: 380,
+                    protein: 22,
+                    carbs: 28,
+                    sugar: 8,
+                    fat: 20,
+                    saturatedFat: 4,
+                    fiber: 2,
+                    sodium: 890
+                }
+            },
+            { 
+                id: 16, 
+                restaurantId: 13, 
+                name: "Caramel Macchiato (Tall)", 
+                description: "Espresso with vanilla syrup and caramel", 
+                allergens: [4], // Milk
+                nutrition: {
+                    calories: 250,
+                    protein: 10,
+                    carbs: 38,
+                    sugar: 35,
+                    fat: 8,
+                    saturatedFat: 5,
+                    fiber: 0,
+                    sodium: 150
+                }
+            },
+            { 
+                id: 17, 
+                restaurantId: 14, 
+                name: "Liberty Burger", 
+                description: "Burger with special sauce and fries", 
+                allergens: [4, 5, 6, 11], // Milk, Eggs, Wheat, Gluten
+                nutrition: {
+                    calories: 720,
+                    protein: 32,
+                    carbs: 65,
+                    sugar: 9,
+                    fat: 38,
+                    saturatedFat: 14,
+                    fiber: 4,
+                    sodium: 1120
+                }
+            },
+            { 
+                id: 18, 
+                restaurantId: 15, 
+                name: "Pancake Special", 
+                description: "Stack of pancakes with syrup and butter", 
+                allergens: [4, 5, 6, 11], // Milk, Eggs, Wheat, Gluten
+                nutrition: {
+                    calories: 580,
+                    protein: 12,
+                    carbs: 82,
+                    sugar: 42,
+                    fat: 22,
+                    saturatedFat: 10,
+                    fiber: 2,
+                    sodium: 680
                 }
             }
         ];
 
         let companies = [
             { id: 1, name: "Jollibee Foods Corporation", email: "jfc@jollibee.com", password: "password123", restaurants: [1, 3, 6] },
-            { id: 2, name: "McDonald's Philippines", email: "admin@mcdonalds.ph", password: "password123", restaurants: [2] }
+            { id: 2, name: "McDonald's Philippines", email: "admin@mcdonalds.ph", password: "password123", restaurants: [2] },
+            { id: 3, name: "Max's Group Inc.", email: "info@maxs.com.ph", password: "password123", restaurants: [4] },
+            { id: 4, name: "Mang Inasal", email: "admin@manginasal.com", password: "password123", restaurants: [5] },
+            { id: 5, name: "Goldilocks Bakeshop", email: "contact@goldilocks.com.ph", password: "password123", restaurants: [7] }
         ];
 
         // Application State
@@ -1798,6 +1962,7 @@
         const selectAllRestaurants = document.getElementById('selectAllRestaurants');
         const clearAllRestaurants = document.getElementById('clearAllRestaurants');
         const addRestaurantModal = document.getElementById('addRestaurantModal');
+        const addMenuItemModal = document.getElementById('addMenuItemModal');
         const nutritionModal = document.getElementById('nutritionModal');
         const closeModalBtns = document.querySelectorAll('.close-modal');
         const nutritionFilterToggle = document.getElementById('nutritionFilterToggle');
@@ -1812,6 +1977,8 @@
         const sugarValue = document.getElementById('sugarValue');
         const resetNutritionFilters = document.getElementById('resetNutritionFilters');
         const nutritionForm = document.getElementById('nutritionForm');
+        const addMenuItemForm = document.getElementById('addMenuItemForm');
+        const menuItemAllergens = document.getElementById('menuItemAllergens');
 
         // Initialize Application
         function initApp() {
@@ -2253,7 +2420,7 @@
                 addRestaurantModal.classList.add('active');
             });
             document.getElementById('addMenuItemBtn')?.addEventListener('click', () => {
-                alert('Add menu item feature would open a form in a full implementation.');
+                openAddMenuItemModal();
             });
 
             // Add event listeners for edit/delete buttons
@@ -2296,6 +2463,46 @@
                     }
                 });
             });
+        }
+
+        // Open add menu item modal
+        function openAddMenuItemModal() {
+            const restaurantSelect = document.getElementById('menuItemRestaurant');
+            restaurantSelect.innerHTML = '<option value="">Select restaurant</option>';
+            
+            if (currentCompany) {
+                const companyRestaurants = restaurants.filter(r => r.companyId === currentCompany.id);
+                companyRestaurants.forEach(restaurant => {
+                    const option = document.createElement('option');
+                    option.value = restaurant.id;
+                    option.textContent = restaurant.name;
+                    restaurantSelect.appendChild(option);
+                });
+            }
+            
+            // Populate allergens
+            menuItemAllergens.innerHTML = '';
+            allergens.forEach(allergen => {
+                const allergenItem = document.createElement('div');
+                allergenItem.className = 'allergen-item';
+                allergenItem.dataset.id = allergen.id;
+                allergenItem.innerHTML = `
+                    <div class="allergen-icon">
+                        <i class="${allergen.icon}"></i>
+                    </div>
+                    <div class="allergen-name">${allergen.name}</div>
+                    <input type="checkbox" class="allergen-checkbox" value="${allergen.id}">
+                `;
+                menuItemAllergens.appendChild(allergenItem);
+                
+                allergenItem.addEventListener('click', () => {
+                    allergenItem.classList.toggle('selected');
+                    const checkbox = allergenItem.querySelector('.allergen-checkbox');
+                    checkbox.checked = !checkbox.checked;
+                });
+            });
+            
+            addMenuItemModal.classList.add('active');
         }
 
         // Open nutrition modal
@@ -2350,6 +2557,44 @@
             
             // Reload dashboard to show updated information
             loadCompanyDashboard();
+        }
+
+        // Handle add menu item form submission
+        function handleAddMenuItemForm(e) {
+            e.preventDefault();
+            
+            const restaurantId = parseInt(document.getElementById('menuItemRestaurant').value);
+            const name = document.getElementById('menuItemName').value;
+            const description = document.getElementById('menuItemDescription').value;
+            
+            // Get selected allergens
+            const selectedAllergenCheckboxes = menuItemAllergens.querySelectorAll('.allergen-checkbox:checked');
+            const selectedAllergenIds = Array.from(selectedAllergenCheckboxes).map(cb => parseInt(cb.value));
+            
+            const newMenuItem = {
+                id: menuItems.length + 1,
+                restaurantId: restaurantId,
+                name: name,
+                description: description,
+                allergens: selectedAllergenIds,
+                nutrition: null // Start without nutrition data
+            };
+            
+            menuItems.push(newMenuItem);
+            
+            // Reset and close modal
+            addMenuItemModal.classList.remove('active');
+            document.getElementById('addMenuItemForm').reset();
+            
+            // Clear allergen selections
+            menuItemAllergens.querySelectorAll('.allergen-item.selected').forEach(item => {
+                item.classList.remove('selected');
+            });
+            
+            // Reload dashboard
+            loadCompanyDashboard();
+            
+            alert('Menu item added successfully! You can now add nutritional information.');
         }
 
         // Handle company login
@@ -2446,12 +2691,117 @@
 
         // Edit restaurant
         function editRestaurant(restaurantId) {
-            alert('Edit restaurant feature would open a form in a full implementation.');
+            const restaurant = restaurants.find(r => r.id === restaurantId);
+            if (!restaurant) return;
+            
+            // Pre-fill the add restaurant form with existing data
+            document.getElementById('restaurantName').value = restaurant.name;
+            document.getElementById('restaurantLocation').value = restaurant.location;
+            document.getElementById('restaurantType').value = restaurant.type;
+            document.getElementById('restaurantDescription').value = restaurant.description || '';
+            
+            // Change modal title
+            const modalHeader = addRestaurantModal.querySelector('.modal-header h3');
+            modalHeader.textContent = 'Edit Restaurant';
+            
+            // Change button text
+            const submitButton = addRestaurantModal.querySelector('button[type="submit"]');
+            submitButton.innerHTML = '<i class="fas fa-save"></i> Update Restaurant';
+            
+            // Remove existing event listener and add new one
+            const form = document.getElementById('addRestaurantForm');
+            form.removeEventListener('submit', handleAddRestaurant);
+            
+            form.onsubmit = function(e) {
+                e.preventDefault();
+                
+                restaurant.name = document.getElementById('restaurantName').value;
+                restaurant.location = document.getElementById('restaurantLocation').value;
+                restaurant.type = document.getElementById('restaurantType').value;
+                restaurant.description = document.getElementById('restaurantDescription').value;
+                
+                addRestaurantModal.classList.remove('active');
+                form.reset();
+                
+                // Reset modal
+                modalHeader.textContent = 'Add New Restaurant';
+                submitButton.innerHTML = '<i class="fas fa-plus"></i> Add Restaurant';
+                
+                // Re-add original event listener
+                form.addEventListener('submit', handleAddRestaurant);
+                
+                // Update UI
+                populateRestaurants();
+                loadCompanyDashboard();
+                
+                alert('Restaurant updated successfully!');
+            };
+            
+            addRestaurantModal.classList.add('active');
         }
 
         // Edit menu item
         function editMenuItem(itemId) {
-            alert('Edit menu item feature would open a form in a full implementation.');
+            const item = menuItems.find(m => m.id === itemId);
+            if (!item) return;
+            
+            openAddMenuItemModal();
+            
+            // Fill form with existing data
+            setTimeout(() => {
+                document.getElementById('menuItemRestaurant').value = item.restaurantId;
+                document.getElementById('menuItemName').value = item.name;
+                document.getElementById('menuItemDescription').value = item.description || '';
+                
+                // Check allergens
+                menuItemAllergens.querySelectorAll('.allergen-item').forEach(allergenItem => {
+                    const allergenId = parseInt(allergenItem.dataset.id);
+                    const checkbox = allergenItem.querySelector('.allergen-checkbox');
+                    
+                    if (item.allergens.includes(allergenId)) {
+                        allergenItem.classList.add('selected');
+                        checkbox.checked = true;
+                    } else {
+                        allergenItem.classList.remove('selected');
+                        checkbox.checked = false;
+                    }
+                });
+                
+                // Change modal title
+                const modalHeader = addMenuItemModal.querySelector('.modal-header h3');
+                modalHeader.textContent = 'Edit Menu Item';
+                
+                // Change button text
+                const submitButton = addMenuItemModal.querySelector('button[type="submit"]');
+                submitButton.innerHTML = '<i class="fas fa-save"></i> Update Menu Item';
+                
+                // Remove existing event listener
+                addMenuItemForm.removeEventListener('submit', handleAddMenuItemForm);
+                
+                addMenuItemForm.onsubmit = function(e) {
+                    e.preventDefault();
+                    
+                    item.name = document.getElementById('menuItemName').value;
+                    item.description = document.getElementById('menuItemDescription').value;
+                    item.restaurantId = parseInt(document.getElementById('menuItemRestaurant').value);
+                    
+                    // Update allergens
+                    const selectedAllergenCheckboxes = menuItemAllergens.querySelectorAll('.allergen-checkbox:checked');
+                    item.allergens = Array.from(selectedAllergenCheckboxes).map(cb => parseInt(cb.value));
+                    
+                    addMenuItemModal.classList.remove('active');
+                    
+                    // Reset modal
+                    modalHeader.textContent = 'Add New Menu Item';
+                    submitButton.innerHTML = '<i class="fas fa-plus"></i> Add Menu Item';
+                    
+                    // Re-add original event listener
+                    addMenuItemForm.addEventListener('submit', handleAddMenuItemForm);
+                    
+                    loadCompanyDashboard();
+                    alert('Menu item updated successfully!');
+                };
+            }, 100);
         }
 
         // Delete restaurant
@@ -2583,6 +2933,7 @@
             companyLoginForm.addEventListener('submit', handleCompanyLogin);
             companyRegisterForm.addEventListener('submit', handleCompanyRegister);
             document.getElementById('addRestaurantForm').addEventListener('submit', handleAddRestaurant);
+            addMenuItemForm.addEventListener('submit', handleAddMenuItemForm);
             nutritionForm.addEventListener('submit', handleNutritionForm);
             
             // Modals
